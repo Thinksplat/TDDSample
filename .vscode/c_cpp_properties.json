@@ -3,7 +3,8 @@
         {
             "name": "Linux",
             "includePath": [
-                "${workspaceFolder}/**"
+                "${workspaceFolder}/**",
+                "${workspaceFolder}/CPlusPlus/build/_deps/googletest-src/googletest/include"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/clang",
@@ -12,5 +13,5 @@
             "intelliSenseMode": "linux-clang-x64"
         }
     ],
-    "version": 4ex
+    "version": 4
 }
