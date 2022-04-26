@@ -7,4 +7,5 @@ TEST(HelloTest, BasicAssertions) {
   // Expect equality.
   EXPECT_EQ(7 * 6, 42);
   EXPECT_EQ(100,100);
+  EXPECT_NE(100,101);
 }
