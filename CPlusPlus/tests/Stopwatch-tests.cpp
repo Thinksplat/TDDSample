@@ -12,14 +12,14 @@ TEST(Stopwatch, DeltaTimeWorks) {
     MockTimeProvider time(0);
     Stopwatch stopwatch(time);
     time.SetValue(100);
-    ASSERT_EQ(stopwatch.GetMicroseconds(), 100);
+    ASSERT_EQ(stopwatch.ElapsedMicroseconds(), 100);
 }
 
 TEST(Stopwatch, MaxRange) {
     MockTimeProvider time(0);
     Stopwatch stopwatch(time);
     time.SetValue(0xFFFFFFFF);
-    ASSERT_EQ(stopwatch.GetMicroseconds(), 0xFFFFFFFF);
+    ASSERT_EQ(stopwatch.ElapsedMicroseconds(), 0xFFFFFFFF);
 }
 
 TEST(Stopwatch, Overflow) {
@@ -28,7 +28,7 @@ TEST(Stopwatch, Overflow) {
     Stopwatch stopwatch(time);
 
     // stopwatch starts at 0
-    ASSERT_EQ(stopwatch.GetMicroseconds(), 0);
+    ASSERT_EQ(stopwatch.ElapsedMicroseconds(), 0);
 
     // increment past 32bits
     time.SetValue(time.GetMicroseconds() + 0xffff);
@@ -37,5 +37,5 @@ TEST(Stopwatch, Overflow) {
     ASSERT_GT(time.GetMicroseconds(), 0);
 
     // Diff works past overflow
-    ASSERT_EQ(stopwatch.GetMicroseconds(), 0xffff);
+    ASSERT_EQ(stopwatch.ElapsedMicroseconds(), 0xffff);
 }

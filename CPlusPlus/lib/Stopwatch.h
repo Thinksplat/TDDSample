@@ -16,7 +16,7 @@ public:
         startTime = timeProvider.GetMicroseconds();
     }
 
-    uint32_t GetMicroseconds()
+    uint32_t ElapsedMicroseconds()
     {
         return timeProvider.GetMicroseconds() - startTime;
     }
