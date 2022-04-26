@@ -3,7 +3,7 @@
 
 #include "lib/IIntegerProvider.h"
 
-class MockInteger : IIntegerProvider {
+class MockInteger : public IIntegerProvider {
 public:
     MockInteger(int16_t value) : value(value) {}
     int16_t GetInteger() override { return value; }

@@ -3,7 +3,7 @@
 
 #include "lib/IBooleanProvider.h"
 
-class MockBoolean : IBooleanProvider
+class MockBoolean : public IBooleanProvider
 {
 public:
     MockBoolean(bool value) : value(value) {}
