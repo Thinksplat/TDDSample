@@ -23,7 +23,7 @@ public:
     
     static int16_t Convert(bool bit0, bool bit1, bool bit2, bool bit3)
     {
-        return BitConversions::NibbleToInteger(bit0, bit1, bit2, bit3);
+        return BitConversions::BitsToInteger(bit0, bit1, bit2, bit3);
     }
 
 private:
