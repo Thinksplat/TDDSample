@@ -1,6 +1,16 @@
 #include <gtest/gtest.h>
 #include "MockBoolean.h"
 #include "MockInteger.h"
+#include "MockIntegerConsumer.h"
+
+TEST(Interface, MockIntegerConsumer) {
+    MockIntegerConsumer consumer;
+    IIntegerConsumer &interface = consumer;
+
+    interface.Consume(42);
+
+    ASSERT_EQ(consumer.Value(), 42);
+}
 
 // Demonstrate some basic assertions.
 TEST(Interface, MockBooleanBasicInherientance)
