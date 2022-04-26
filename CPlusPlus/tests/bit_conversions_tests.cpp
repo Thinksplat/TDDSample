@@ -11,12 +11,12 @@ TEST(BitConversions, BitsToNibble) {
 }
 
 TEST(BitConversions, NibblesToInteger) {
-    auto value = BitConversions::NibblesToInteger(0, 0);
+    auto value = BitConversions::NibblesToWord(0, 0);
     ASSERT_EQ(value, 0);
 
-    value = BitConversions::NibblesToInteger(1, 1);
+    value = BitConversions::NibblesToWord(1, 1);
     ASSERT_EQ(value, 0x11);
 
-    value = BitConversions::NibblesToInteger(0, 1);
+    value = BitConversions::NibblesToWord(0, 1);
     ASSERT_EQ(value, 0x10);
 }

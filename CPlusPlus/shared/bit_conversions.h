@@ -13,7 +13,7 @@ namespace BitConversions
                (bit3 << 3);
     }
 
-    inline int16_t NibblesToInteger(int16_t lowbits, int16_t highbits)
+    inline int16_t NibblesToWord(int16_t lowbits, int16_t highbits)
     {
         return (highbits << 4) | lowbits;
     }
