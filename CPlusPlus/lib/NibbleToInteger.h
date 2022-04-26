@@ -3,6 +3,7 @@
 
 #include "lib/IIntegerProvider.h"
 #include "lib/IBooleanProvider.h"
+#include "shared/bit_conversions.h"
 
 class NibbleToInteger : public IIntegerProvider
 {
@@ -21,10 +22,7 @@ public:
     
     static int16_t Convert(bool bit0, bool bit1, bool bit2, bool bit3)
     {
-        return (bit0 << 0) | 
-                (bit1 << 1) | 
-                (bit2 << 2) | 
-                (bit3 << 3);
+        return BitConversions::NibbleToInteger(bit0, bit1, bit2, bit3);
     }
 
 private:
