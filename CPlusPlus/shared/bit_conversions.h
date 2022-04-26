@@ -13,6 +13,10 @@ namespace BitConversions
                (bit3 << 3);
     }
 
+    inline int16_t NibblesToInteger(int16_t lowbits, int16_t highbits)
+    {
+        return (highbits << 4) | lowbits;
+    }
 }
 
 #endif /* DA128173_42BF_483A_A5E0_F41AA962A50E */
