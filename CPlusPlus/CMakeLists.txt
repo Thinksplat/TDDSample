@@ -17,6 +17,10 @@ enable_testing()
 
 FILE(GLOB TEST_SRCS tests/*.cpp)
 
+include_directories(
+  ${CMAKE_CURRENT_SOURCE_DIR}
+)
+
 add_executable(
   all_tests
   ${TEST_SRCS}
