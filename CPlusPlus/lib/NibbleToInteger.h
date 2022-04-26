@@ -4,7 +4,7 @@
 #include "lib/IIntegerProvider.h"
 #include "lib/IBooleanProvider.h"
 
-class NibbleToInteger : IIntegerProvider
+class NibbleToInteger : public IIntegerProvider
 {
 public:
     NibbleToInteger(IBooleanProvider &bit0, IBooleanProvider &bit1, IBooleanProvider &bit2, IBooleanProvider &bit3) : bit0(bit0), bit1(bit1), bit2(bit2), bit3(bit3)
