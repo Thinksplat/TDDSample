@@ -12,10 +12,19 @@ public:
     }
     int16_t GetInteger() override
     {
-        return (bit0.GetBool() << 0) |
-                (bit1.GetBool() << 1) |
-                (bit2.GetBool() << 2) |
-                (bit3.GetBool() << 3);
+        return Convert(
+            bit0.GetBool(),
+            bit1.GetBool(),
+            bit2.GetBool(),
+            bit3.GetBool());
+    }
+    
+    static int16_t Convert(bool bit0, bool bit1, bool bit2, bool bit3)
+    {
+        return (bit0 << 0) | 
+                (bit1 << 1) | 
+                (bit2 << 2) | 
+                (bit3 << 3);
     }
 
 private:
