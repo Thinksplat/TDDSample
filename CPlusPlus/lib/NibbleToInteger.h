@@ -12,7 +12,10 @@ public:
     }
     int16_t GetInteger() override
     {
-        return (bit0.GetBool() ? 1 : 0) + (bit1.GetBool() ? 2 : 0) + (bit2.GetBool() ? 4 : 0) + (bit3.GetBool() ? 8 : 0);
+        return (bit0.GetBool() << 0) |
+                (bit1.GetBool() << 1) |
+                (bit2.GetBool() << 2) |
+                (bit3.GetBool() << 3);
     }
 
 private:
