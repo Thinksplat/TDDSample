@@ -1,25 +1,6 @@
 #include <gtest/gtest.h>
-#include "lib/IBooleanProvider.h"
-#include "lib/IIntegerProvider.h"
-
-class MockBoolean : IBooleanProvider
-{
-public:
-    MockBoolean(bool value) : value(value) {}
-    bool GetBool() override { return value; }
-    void SetValue(bool value) { this->value = value; }
-private:
-    bool value;
-};
-
-class MockInteger : IIntegerProvider {
-public:
-    MockInteger(int16_t value) : value(value) {}
-    int16_t GetInteger() override { return value; }
-    void SetValue(int16_t value) { this->value = value; }
-private:
-    int16_t value;
-};
+#include "MockBoolean.h"
+#include "MockInteger.h"
 
 // Demonstrate some basic assertions.
 TEST(Interface, MockBooleanBasicInherientance)
