@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 #include "MockBoolean.h"
-#include "lib/NibbleToInteger.h"
+#include "lib/BitsToNibble.h"
 
 static void TestPattern(bool bit0, bool bit1, bool bit2, bool bit3, int16_t expected)
 {
@@ -9,7 +9,7 @@ static void TestPattern(bool bit0, bool bit1, bool bit2, bool bit3, int16_t expe
     MockBoolean mockBit1(bit1);
     MockBoolean mockBit2(bit2);
     MockBoolean mockBit3(bit3);
-    NibbleToInteger nibbleToInteger(mockBit0, mockBit1, mockBit2, mockBit3);
+    BitsToNibble nibbleToInteger(mockBit0, mockBit1, mockBit2, mockBit3);
 
     // Make sure we can get to it through the interface
     IIntegerProvider &intprovider = nibbleToInteger;
@@ -17,32 +17,32 @@ static void TestPattern(bool bit0, bool bit1, bool bit2, bool bit3, int16_t expe
     ASSERT_EQ(value, expected);
 
     // Test the pure static function too.
-    value = NibbleToInteger::Convert(bit0,bit1,bit2,bit3);
+    value = BitsToNibble::Convert(bit0,bit1,bit2,bit3);
     ASSERT_EQ(value, expected);
 }
 
 // Demonstrate some basic assertions.
-TEST(NibbleToInteger, Instantiation)
+TEST(BitsToNibble, Instantiation)
 {
     MockBoolean bit0(false);
     MockBoolean bit1(false);
     MockBoolean bit2(false);
     MockBoolean bit3(false);
 
-    NibbleToInteger ntoi(bit0, bit1, bit2, bit3);
+    BitsToNibble ntoi(bit0, bit1, bit2, bit3);
 }
 
-TEST(NibbleToInteger, Zero)
+TEST(BitsToNibble, Zero)
 {
     TestPattern(false, false, false, false, 0);
 }
 
-TEST(NibbleToInteger, One)
+TEST(BitsToNibble, One)
 {
     TestPattern(true, false, false, false, 1);
 }
 
-TEST(NibbleToInteger, AllPatterns)
+TEST(BitsToNibble, AllPatterns)
 {
     TestPattern(false, false, false, false, 0);
     TestPattern(true, false, false, false, 1);

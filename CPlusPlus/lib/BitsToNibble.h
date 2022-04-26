@@ -5,10 +5,10 @@
 #include "lib/IBooleanProvider.h"
 #include "shared/bit_conversions.h"
 
-class NibbleToInteger : public IIntegerProvider
+class BitsToNibble : public IIntegerProvider
 {
 public:
-    NibbleToInteger(IBooleanProvider &bit0, IBooleanProvider &bit1, IBooleanProvider &bit2, IBooleanProvider &bit3) : bit0(bit0), bit1(bit1), bit2(bit2), bit3(bit3)
+    BitsToNibble(IBooleanProvider &bit0, IBooleanProvider &bit1, IBooleanProvider &bit2, IBooleanProvider &bit3) : bit0(bit0), bit1(bit1), bit2(bit2), bit3(bit3)
     {
     }
     
