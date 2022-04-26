@@ -33,6 +33,9 @@ static void TestPattern(int16_t lowbits, int16_t highbits, int16_t expected)
     IIntegerProvider &intprovider = ntoi;
     auto value = intprovider.GetInteger();
     ASSERT_EQ(value, expected);
+
+    value = NibblesToInteger::Convert(lowbits, highbits);
+    ASSERT_EQ(value, expected);
 }
 
 TEST(NibblesToInteger, Zero)
