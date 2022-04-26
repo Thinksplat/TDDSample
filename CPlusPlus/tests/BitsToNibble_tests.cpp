@@ -9,10 +9,10 @@ static void TestPattern(bool bit0, bool bit1, bool bit2, bool bit3, int16_t expe
     MockBoolean mockBit1(bit1);
     MockBoolean mockBit2(bit2);
     MockBoolean mockBit3(bit3);
-    BitsToNibble nibbleToInteger(mockBit0, mockBit1, mockBit2, mockBit3);
+    BitsToNibble bitsToNibble(mockBit0, mockBit1, mockBit2, mockBit3);
 
     // Make sure we can get to it through the interface
-    IIntegerProvider &intprovider = nibbleToInteger;
+    IIntegerProvider &intprovider = bitsToNibble;
     auto value = intprovider.GetInteger();
     ASSERT_EQ(value, expected);
 
