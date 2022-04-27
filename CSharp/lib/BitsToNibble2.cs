@@ -24,4 +24,5 @@ public class BitsToNibble2 : IIntegerProvider
         return (bit0 ? 1 : 0) + (bit1 ? 2 : 0) + (bit2 ? 4 : 0) + (bit3 ? 8 : 0);
     }
 
+
 }
