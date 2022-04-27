@@ -2,20 +2,19 @@
 #define D6560AD8_CADB_40B0_8B37_0E2F0B74B126
 
 #include "lib/IIntegerConsumer.h"
-#include "lib/ITimeProvider.h"
-#include "lib-behaviour/Wait.h"
+#include "lib/ITimeWaiter.h"
 
 namespace Behaviour
 {
-    static void OnOff(IIntegerConsumer &led, ITimeProvider &time, uint32_t delay_microseconds)
+    static void OnOff(IIntegerConsumer &led, ITimeWaiter &waiter)
     {
         // ON
         led.Consume(1);
-        Wait(time, delay_microseconds);
+        waiter.Wait();
 
         // Off
         led.Consume(0);
-        Wait(time, delay_microseconds);
+        waiter.Wait();
     }
 
 } // namespace Behaviour
