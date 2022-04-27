@@ -7,7 +7,7 @@
 
 namespace Behaviour
 {
-    void OnOff(IIntegerConsumer &led, ITimeProvider &time, uint32_t delay_microseconds)
+    static void OnOff(IIntegerConsumer &led, ITimeProvider &time, uint32_t delay_microseconds)
     {
         // ON
         led.Consume(1);

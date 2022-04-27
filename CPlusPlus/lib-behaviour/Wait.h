@@ -1,12 +1,12 @@
-#ifndef AD015665_ECA7_40E1_B6F8_811EEE168E63
-#define AD015665_ECA7_40E1_B6F8_811EEE168E63
+#ifndef FB185EEF_26A2_4C49_BF99_EDBC19BBBB11
+#define FB185EEF_26A2_4C49_BF99_EDBC19BBBB11
 
 #include "lib/ITimeProvider.h"
 #include "lib/Stopwatch.h"
 
 namespace Behaviour
 {
-    void Wait(ITimeProvider &time, uint32_t delay_microseconds)
+    static void Wait(ITimeProvider &time, uint32_t delay_microseconds)
     {
         Stopwatch stopwatch(time);
         while (stopwatch.ElapsedMicroseconds() < delay_microseconds)
@@ -15,4 +15,5 @@ namespace Behaviour
     }
 } // namespace Behaviour
 
-#endif /* AD015665_ECA7_40E1_B6F8_811EEE168E63 */
+
+#endif /* FB185EEF_26A2_4C49_BF99_EDBC19BBBB11 */

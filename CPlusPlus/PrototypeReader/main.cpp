@@ -1,6 +1,7 @@
 #include "bsp_main.h"
 #include "lib/Stopwatch.h"
 #include "lib-behaviour/OnOff.h"
+#include "lib-behaviour/Wait.h"
 
 void Blink(IIntegerConsumer &led, ITimeProvider &time, int count, uint32_t delay_microseconds)
 {
@@ -10,25 +11,17 @@ void Blink(IIntegerConsumer &led, ITimeProvider &time, int count, uint32_t delay
     }
 }
 
-void Wait(ITimeProvider &time, uint32_t microseconds)
-{
-    Stopwatch stopwatch(time);
-    while (stopwatch.ElapsedMicroseconds() < microseconds)
-    {
-    }
-}
-
 void SOS(IIntegerConsumer &led, ITimeProvider &time)
 {
     const uint32_t shorttime = 100000;
     const uint32_t longtime = shorttime * 3;
     Blink(led, time, 3, shorttime);
-    Wait(time, longtime);
+    Behaviour::Wait(time, longtime);
     Blink(led, time, 3, longtime);
-    Wait(time, longtime);
+    Behaviour::Wait(time, longtime);
     Blink(led, time, 3, shorttime);
-    Wait(time, longtime);
-    Wait(time, longtime);
+    Behaviour::Wait(time, longtime);
+    Behaviour::Wait(time, longtime);
 }
 
 void run_program()
