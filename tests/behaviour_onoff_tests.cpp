@@ -11,8 +11,7 @@ TEST(Behaviour, OnOff) {
     IntegerConsumerRecorder led;
     EqualTimeWaiter waiter(time, 100);
     
-    time.Reset();
-    ASSERT_EQ(time.GetTime(), 0);
+    ASSERT_LT(time.GetTime(), 10);
     Behaviour::OnOff(led, waiter);
     // Time should be somewhere between 200 and 203
     ASSERT_GE(time.GetTime(), 200);

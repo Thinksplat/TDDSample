@@ -4,13 +4,14 @@
             "name": "Linux",
             "includePath": [
                 "${workspaceFolder}/**",
-                "${workspaceFolder}/CPlusPlus/build/_deps/googletest-src/googletest/include"
+                "${workspaceFolder}/build/_deps/googletest-src/googletest/include"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/clang",
             "cStandard": "c17",
             "cppStandard": "c++14",
-            "intelliSenseMode": "linux-clang-x64"
+            "intelliSenseMode": "linux-clang-x64",
+            "configurationProvider": "go2sh.cmake-integration"
         }
     ],
     "version": 4

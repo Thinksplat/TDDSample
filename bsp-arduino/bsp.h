@@ -21,6 +21,15 @@ public:
     }
 };
 
+class TrueBooleanProvider : public IBooleanProvider
+{
+    public:
+    bool GetBool() override
+    {
+        return true;
+    }
+};
+
 class ArduinoPin : public IBooleanProvider
 {
 public:
@@ -76,7 +85,12 @@ public:
         return pin0;
     }
 
+    IBooleanProvider &KeepRunning() {
+        return keep_running;
+    }
+
 private:
+    TrueBooleanProvider keep_running;
     ArduinoTime time;
     ArduinoPin pin0;
     ArduinoWritePin led;

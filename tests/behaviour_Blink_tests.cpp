@@ -11,8 +11,7 @@ TEST(Behaviour, Blink) {
     IntegerConsumerRecorder led;
     EqualTimeWaiter waiter(time, 100);
 
-    time.Reset();
-    ASSERT_EQ(time.GetTime(), 0);
+    ASSERT_LT(time.GetTime(), 10);
 
     Behaviour::Blink(led, waiter, 3);
     // Should have turned on off 6 times
