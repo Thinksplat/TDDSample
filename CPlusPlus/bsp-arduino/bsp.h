@@ -17,7 +17,7 @@ public:
 
     uint32_t GetMicroseconds() override
     {
-        return 0;
+        return micros();
     }
 };
 
@@ -48,7 +48,7 @@ public:
 
     void Consume(int16_t value) override
     {
-        digitalWrite(pin, value != 0);
+        digitalWrite(pin, value != 0 ? HIGH : LOW);
     }
 private:
     int pin;
