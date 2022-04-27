@@ -21,7 +21,8 @@ TEST(NibblesToInteger, IsAIntegerProvider)
     // Make sure we can get a reference to the interface
     IIntegerProvider &intprovider = ntoi;
 
-    intprovider.GetInteger();
+    auto value = intprovider.GetInteger();
+    ASSERT_EQ(value, 0);
 }
 
 static void TestPattern(int16_t lowbits, int16_t highbits, int16_t expected)
