@@ -1,33 +1,41 @@
 #include "bsp_main.h"
 #include "lib/Stopwatch.h"
 
+void OnOff(IIntegerConsumer &led, ITimeProvider &time, uint32_t delay_microseconds)
+{
+    // ON
+    Stopwatch stopwatch(time);
+    while (stopwatch.ElapsedMicroseconds() < delay_microseconds)
+    {
+        led.Consume(1);
+    }
+
+    // Off
+    stopwatch.Reset();
+    while (stopwatch.ElapsedMicroseconds() < delay_microseconds)
+    {
+        led.Consume(0);
+    }
+}
+
 void Blink(IIntegerConsumer &led, ITimeProvider &time, int count, uint32_t delay_microseconds)
 {
     for (int i = 0; i < count; ++i)
     {
-        // ON
-        Stopwatch stopwatch(time);
-        while (stopwatch.ElapsedMicroseconds() < delay_microseconds)
-        {
-            led.Consume(1);
-        }
-
-        // Off
-        stopwatch.Reset();
-        while (stopwatch.ElapsedMicroseconds() < delay_microseconds)
-        {
-            led.Consume(0);
-        }
+        OnOff(led, time, delay_microseconds);
     }
 }
 
-void Wait(ITimeProvider &time, uint32_t microseconds) {
+void Wait(ITimeProvider &time, uint32_t microseconds)
+{
     Stopwatch stopwatch(time);
-    while (stopwatch.ElapsedMicroseconds() < microseconds) {
+    while (stopwatch.ElapsedMicroseconds() < microseconds)
+    {
     }
 }
 
-void SOS(IIntegerConsumer &led, ITimeProvider &time) {
+void SOS(IIntegerConsumer &led, ITimeProvider &time)
+{
     const uint32_t shorttime = 100000;
     const uint32_t longtime = shorttime * 3;
     Blink(led, time, 3, shorttime);
@@ -43,7 +51,7 @@ void run_program()
 {
     BSP bsp;
 
-   // ITimeProvider &time = bsp.Time();
+    // ITimeProvider &time = bsp.Time();
     // IBooleanProvider &pin0 = bsp.Pin0();
 
     // Stopwatch stopwatch(time);
