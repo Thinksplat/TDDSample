@@ -15,11 +15,13 @@ void SOS(IIntegerConsumer &led, ITimeProvider &time)
 {
     const uint32_t shorttime = 100000;
     const uint32_t longtime = shorttime * 3;
+
     Blink(led, time, 3, shorttime);
     Behaviour::Wait(time, longtime);
     Blink(led, time, 3, longtime);
     Behaviour::Wait(time, longtime);
     Blink(led, time, 3, shorttime);
+
     Behaviour::Wait(time, longtime);
     Behaviour::Wait(time, longtime);
 }
@@ -39,5 +41,6 @@ void run_program()
     while (true)
     {
         SOS(bsp.LED(), bsp.Time());
+        Behaviour::Wait(bsp.Time(), 1000000);
     }
 }
