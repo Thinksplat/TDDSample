@@ -1,28 +1,12 @@
 #include "bsp_main.h"
 #include "lib/Stopwatch.h"
-
-void OnOff(IIntegerConsumer &led, ITimeProvider &time, uint32_t delay_microseconds)
-{
-    // ON
-    Stopwatch stopwatch(time);
-    while (stopwatch.ElapsedMicroseconds() < delay_microseconds)
-    {
-        led.Consume(1);
-    }
-
-    // Off
-    stopwatch.Reset();
-    while (stopwatch.ElapsedMicroseconds() < delay_microseconds)
-    {
-        led.Consume(0);
-    }
-}
+#include "lib-behaviour/OnOff.h"
 
 void Blink(IIntegerConsumer &led, ITimeProvider &time, int count, uint32_t delay_microseconds)
 {
     for (int i = 0; i < count; ++i)
     {
-        OnOff(led, time, delay_microseconds);
+        Behaviour::OnOff(led, time, delay_microseconds);
     }
 }
 
