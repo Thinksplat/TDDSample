@@ -9,7 +9,9 @@
 TEST(Behaviour, Blink) {
     WalkingTime time;
     IntegerConsumerRecorder led;
-    EqualTimeWaiter waiter(time, 100);
+    EqualTimeWaiter etw(time);
+    
+    auto waiter = etw.Create(100);
 
     ASSERT_LT(time.GetTime(), 10);
 

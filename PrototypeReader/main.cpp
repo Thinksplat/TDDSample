@@ -10,22 +10,20 @@ void SOS(IIntegerConsumer &led, ITimeProvider &time)
     const uint32_t shorttime = 100000;
     const uint32_t longtime = shorttime * 3;
 
-    EqualTimeWaiter shortwait(time, shorttime);
-    EqualTimeWaiter longwait(time, longtime);
+    EqualTimeWaiter etw(time);
+    auto shortwait = etw.Create(shorttime);
+    auto longwait = etw.Create(longtime);
 
     // S
     Behaviour::Blink(led, shortwait, 3);
-    shortwait.Sequence(longwait);
     longwait.Wait();
 
     // O
     Behaviour::Blink(led, longwait, 3);
     longwait.Wait();
-    longwait.Sequence(shortwait);
 
     // S
     Behaviour::Blink(led, shortwait, 3);
-    shortwait.Sequence(longwait);
     longwait.Wait();
 }
 

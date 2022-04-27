@@ -4,31 +4,42 @@
 #include "lib/ITimeProvider.h"
 #include "ITimeWaiter.h"
 
-class EqualTimeWaiter : public ITimeWaiter
+class EqualTimeWaiter
 {
 public:
-    EqualTimeWaiter(ITimeProvider &time, uint32_t delay_microseconds)
-        : time(time), delay_microseconds(delay_microseconds)
+    class DelayWaiter : public ITimeWaiter
+    {
+    public:
+        void Wait()
+        {
+            // we use these calculations to deal with overflow properly
+            while (time.GetMicroseconds() - last_microseconds < delay_microseconds)
+            {
+            }
+            last_microseconds += delay_microseconds;
+        }
+
+        DelayWaiter(ITimeProvider &time, uint32_t &last_microseconds, uint32_t delay_microseconds) : time(time), last_microseconds(last_microseconds), delay_microseconds(delay_microseconds) {}
+
+    protected:
+        ITimeProvider &time;
+        uint32_t &last_microseconds;
+        uint32_t delay_microseconds;
+    };
+
+    EqualTimeWaiter(ITimeProvider &time)
+        : time(time)
     {
         last_microseconds = time.GetMicroseconds();
     }
 
-    void Sequence(EqualTimeWaiter &next) {
-        next.last_microseconds = this->last_microseconds;
-    }
-
-    void Wait()
+    DelayWaiter Create(uint32_t delay_microseconds)
     {
-        // we use these calculations to deal with overflow properly
-        while (time.GetMicroseconds() - last_microseconds < delay_microseconds)
-        {
-        }
-        last_microseconds += delay_microseconds;
+        return DelayWaiter(time, last_microseconds, delay_microseconds);
     }
 
 private:
     ITimeProvider &time;
-    uint32_t delay_microseconds;
     uint32_t last_microseconds;
 };
 
