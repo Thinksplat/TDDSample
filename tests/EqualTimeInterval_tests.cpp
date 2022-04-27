@@ -1,19 +1,19 @@
 #include <gtest/gtest.h>
-#include "lib/EqualTimeWaiter.h"
+#include "lib/EqualTimeInterval.h"
 #include "WalkingTime.h"
 
 // Demonstrate some basic assertions.
-TEST(EqualTimeWaiter, Instantiation)
+TEST(EqualTimeInterval, Instantiation)
 {
     WalkingTime time;
-    EqualTimeWaiter etw(time);
+    EqualTimeInterval etw(time);
 }
 
-TEST(EqualTimeWaiter, Wait)
+TEST(EqualTimeInterval, Wait)
 {
     WalkingTime time;
-    EqualTimeWaiter etw(time);
-    auto waiter = etw.Create(100);
+    EqualTimeInterval etw(time);
+    auto waiter = etw.CreateWaiter(100);
     waiter.Wait();
     ASSERT_GE(time.GetTime(), 100);
     ASSERT_LE(time.GetTime(), 103);
@@ -31,24 +31,24 @@ TEST(EqualTimeWaiter, Wait)
     ASSERT_LE(time.GetTime(), 403);
 }
 
-TEST(EqualTimeWaiter, WorksWithTimePassingInbetween)
+TEST(EqualTimeInterval, WorksWithTimePassingInbetween)
 {
     WalkingTime time;
 
-    EqualTimeWaiter etw(time);
-    auto waiter = etw.Create(100);
+    EqualTimeInterval etw(time);
+    auto waiter = etw.CreateWaiter(100);
     time.SetTime(50);
     waiter.Wait();
     ASSERT_GE(time.GetTime(), 100);
     ASSERT_LE(time.GetTime(), 103);
 }
 
-TEST(EqualTimeWaiter, OverflowReturnsRightAwayToCatchUp)
+TEST(EqualTimeInterval, OverflowReturnsRightAwayToCatchUp)
 {
     WalkingTime time;
 
-    EqualTimeWaiter etw(time);
-    auto waiter = etw.Create(100);
+    EqualTimeInterval etw(time);
+    auto waiter = etw.CreateWaiter(100);
 
     // We pass the first one
     time.SetTime(150);

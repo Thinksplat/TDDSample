@@ -20,7 +20,8 @@
 		"GitHub.copilot",
 		"ms-vscode.cpptools-extension-pack",
 		"ms-vscode.cpptools-themes",
-		"ms-dotnettools.csharp"
+		"matepek.vscode-catch2-test-adapter",
+		"akiramiyakoda.cppincludeguard"
 	],
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
@@ -30,8 +31,5 @@
 	// "postCreateCommand": "gcc -v",
 
 	// Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
-	"remoteUser": "vscode",
-	"features": {
-		"dotnet": "latest"
-	}
+	"remoteUser": "vscode"
 }

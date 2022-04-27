@@ -3,15 +3,15 @@
 #include "WalkingTime.h"
 #include "MockIntegerConsumer.h"
 #include "IntegerConsumerRecorder.h"
-#include "lib/EqualTimeWaiter.h"
+#include "lib/EqualTimeInterval.h"
 
 // Demonstrate some basic assertions.
 TEST(Behaviour, Blink) {
     WalkingTime time;
     IntegerConsumerRecorder led;
-    EqualTimeWaiter etw(time);
+    EqualTimeInterval etw(time);
     
-    auto waiter = etw.Create(100);
+    auto waiter = etw.CreateWaiter(100);
 
     ASSERT_LT(time.GetTime(), 10);
 

@@ -3,16 +3,16 @@
 #include "lib-behaviour/OnOff.h"
 #include "lib-behaviour/Wait.h"
 #include "lib-behaviour/Blink.h"
-#include "lib/EqualTimeWaiter.h"
+#include "lib/EqualTimeInterval.h"
 
 void SOS(IIntegerConsumer &led, ITimeProvider &time)
 {
     const uint32_t shorttime = 100000;
     const uint32_t longtime = shorttime * 3;
 
-    EqualTimeWaiter etw(time);
-    auto shortwait = etw.Create(shorttime);
-    auto longwait = etw.Create(longtime);
+    EqualTimeInterval etw(time);
+    auto shortwait = etw.CreateWaiter(shorttime);
+    auto longwait = etw.CreateWaiter(longtime);
 
     // S
     Behaviour::Blink(led, shortwait, 3);
