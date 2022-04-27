@@ -13,16 +13,19 @@ void SOS(IIntegerConsumer &led, ITimeProvider &time)
     EqualTimeWaiter shortwait(time, shorttime);
     EqualTimeWaiter longwait(time, longtime);
 
-// S
+    // S
     Behaviour::Blink(led, shortwait, 3);
+    shortwait.Sequence(longwait);
     longwait.Wait();
 
-// O
-     Behaviour::Blink(led, longwait, 3);
+    // O
+    Behaviour::Blink(led, longwait, 3);
     longwait.Wait();
+    longwait.Sequence(shortwait);
 
-// S
+    // S
     Behaviour::Blink(led, shortwait, 3);
+    shortwait.Sequence(longwait);
     longwait.Wait();
 }
 

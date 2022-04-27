@@ -13,6 +13,10 @@ public:
         last_microseconds = time.GetMicroseconds();
     }
 
+    void Sequence(EqualTimeWaiter &next) {
+        next.last_microseconds = this->last_microseconds;
+    }
+
     void Wait()
     {
         // we use these calculations to deal with overflow properly
