@@ -8,6 +8,8 @@ class IIntegerConsumer;
 class IBSP
 {
     ITimeProvider &Time();
+    // A provider to tell the program to keep running or stop.
+    IBooleanProvider &KeepRunning();
     IIntegerConsumer &LED();
     IBooleanProvider &Pin0();
 };

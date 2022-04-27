@@ -30,7 +30,7 @@ void run_program()
 {
     BSP bsp;
 
-    while (true)
+    while (bsp.KeepRunning().GetBool())
     {
         SOS(bsp.LED(), bsp.Time());
         Behaviour::Wait(bsp.Time(), 1000000);

@@ -6,21 +6,26 @@
 
 class EqualTimeWaiter : public ITimeWaiter
 {
-    public:
+public:
     EqualTimeWaiter(ITimeProvider &time, uint32_t delay_microseconds)
         : stopwatch(time), delay_microseconds(delay_microseconds)
     {
-        next_elapsed_microseconds = delay_microseconds;
+        last_microseconds = time.GetMicroseconds();
     }
-    void Wait() {
-        while (stopwatch.ElapsedMicroseconds() < next_elapsed_microseconds) {
+
+    void Wait()
+    {
+        // we use these calculations to deal with overflow properly
+        while (stopwatch.ElapsedMicroseconds() - last_microseconds < delay_microseconds)
+        {
         }
-        next_elapsed_microseconds += delay_microseconds;
+        last_microseconds += delay_microseconds;
     }
-    private:
+
+private:
     Stopwatch stopwatch;
     uint32_t delay_microseconds;
-    uint32_t next_elapsed_microseconds;
+    uint32_t last_microseconds;
 };
 
 #endif /* E21D3C25_B801_4579_B115_5C89FA7A13F9 */

@@ -26,12 +26,32 @@ private:
     int16_t prev = 0;
 };
 
+class LinuxTime : public ITimeProvider
+{
+public:
+    uint32_t GetMicroseconds() override
+    {
+        return LinuxNumberOfMicroseconds() - starttime;
+    }
+
+private:
+    uint32_t starttime = LinuxNumberOfMicroseconds();
+    static uint32_t LinuxNumberOfMicroseconds()
+    {
+        struct timeval tv;
+        gettimeofday(&tv, NULL);
+        return tv.tv_sec * 1000000 + tv.tv_usec;
+    }
+};
+
 class BSP : IBSP
 {
 public:
-    BSP() : timemock(LinuxNumberOfMicroseconds),
+    BSP() :
             pin0([this]()
-                 { return this->Time().GetMicroseconds() / 1000000 % 2 == 0; })
+                 { return this->Time().GetMicroseconds() / 1000000 % 2 == 0; }),
+            keeprunning([this]()
+                        { return this->Time().GetMicroseconds() < 1000000 * 10; })
     {
     }
 
@@ -50,16 +70,15 @@ public:
         return led;
     }
 
-private:
-    static uint32_t LinuxNumberOfMicroseconds()
+    IBooleanProvider &KeepRunning()
     {
-        struct timeval tv;
-        gettimeofday(&tv, NULL);
-        return tv.tv_sec * 1000000 + tv.tv_usec;
+        return keeprunning;
     }
 
-    MockTimeLambda timemock;
+private:
+    LinuxTime timemock;
     MockBooleanLambda pin0;
+    MockBooleanLambda keeprunning;
     LinuxLED led;
 };
 
