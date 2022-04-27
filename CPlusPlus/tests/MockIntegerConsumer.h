@@ -10,7 +10,7 @@ public:
     {
         return value;
     }
-    void Consume(int32_t value) override
+    void Consume(int16_t value) override
     {
         this->value = value;
     }
