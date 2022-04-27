@@ -5,7 +5,7 @@
 
 extern void run_program();
 
-int main(int argc, char *argv[]) {
+int main(int , char *[]) {
     run_program();
 
     return 0;

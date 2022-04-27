@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.14)
 project(my_project)
 
+add_compile_options(-Wall -Wextra -pedantic -Werror)
+
 # GoogleTest requires at least C++11
 set(CMAKE_CXX_STANDARD 11)
 
