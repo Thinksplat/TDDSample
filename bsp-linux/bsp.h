@@ -6,6 +6,7 @@
 #include "lib/IIntegerConsumer.h"
 #include "tests/MockTimeLambda.h"
 #include "tests/MockBooleanLambda.h"
+#include "tests/Sim.h"
 // include files for gettimeofday
 #include <sys/time.h>
 #include <iostream>
@@ -47,11 +48,11 @@ private:
 class BSP : IBSP
 {
 public:
-    BSP() :
-            pin0([this]()
+    BSP() : pin0([this]()
                  { return this->Time().GetMicroseconds() / 1000000 % 2 == 0; }),
             keeprunning([this]()
-                        { return this->Time().GetMicroseconds() < 1000000 * 10; })
+                        { return this->Time().GetMicroseconds() < 1000000 * 10; }),
+            sim(timemock)
     {
     }
 
@@ -80,6 +81,7 @@ private:
     MockBooleanLambda pin0;
     MockBooleanLambda keeprunning;
     LinuxLED led;
+    Sim sim;
 };
 
 #endif /* A9CF6D59_0CED_454A_8B64_A9D9CDD92F45 */

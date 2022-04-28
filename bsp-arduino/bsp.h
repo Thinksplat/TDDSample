@@ -6,20 +6,10 @@
 #include "lib/IBooleanProvider.h"
 #include "lib/ITimeProvider.h"
 #include "lib/IIntegerConsumer.h"
+#include "ArduinoWritePin.h"
+#include "ArduinoPinReader.h"
+#include "ArduinoTime.h"
 #include <Arduino.h>
-
-class ArduinoTime : public ITimeProvider
-{
-public:
-    ArduinoTime()
-    {
-    }
-
-    uint32_t GetMicroseconds() override
-    {
-        return micros();
-    }
-};
 
 class TrueBooleanProvider : public IBooleanProvider
 {
@@ -28,39 +18,6 @@ class TrueBooleanProvider : public IBooleanProvider
     {
         return true;
     }
-};
-
-class ArduinoPin : public IBooleanProvider
-{
-public:
-    ArduinoPin(int pin) : pin(pin)
-    {
-        pinMode(pin, INPUT);
-    }
-
-    bool GetBool() override
-    {
-        return digitalRead(pin) == HIGH;
-    }
-
-private:
-    int pin;
-};
-
-class ArduinoWritePin : public IIntegerConsumer
-{
-public:
-    ArduinoWritePin(int pin) : pin(pin)
-    {
-        pinMode(pin, OUTPUT);
-    }
-
-    void Consume(int16_t value) override
-    {
-        digitalWrite(pin, value != 0 ? HIGH : LOW);
-    }
-private:
-    int pin;
 };
 
 class BSP : IBSP
@@ -92,7 +49,7 @@ public:
 private:
     TrueBooleanProvider keep_running;
     ArduinoTime time;
-    ArduinoPin pin0;
+    ArduinoPinReader pin0;
     ArduinoWritePin led;
 };
 
