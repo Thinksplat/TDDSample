@@ -31,14 +31,15 @@ public:
         EqualTimeInterval::TimerWaiter waiter;
     };
 
-    SkipRecoverWaiter CreateWaiter(uint32_t delay_microseconds)
+    SkipRecoverWaiter CreateWaiter(uint32_t interval_microseconds)
     {
-        return SkipRecoverWaiter(eqi.CreateWaiter(delay_microseconds));
+        return SkipRecoverWaiter(eqi.CreateWaiter(interval_microseconds));
     }
 
-    void Wait(uint32_t delay_microseconds)
+    // Wait microseconds from the previous wait point
+    void Wait(uint32_t interval_microseconds)
     {
-        CreateWaiter(delay_microseconds).Wait();
+        CreateWaiter(interval_microseconds).Wait();
     }
 
 private:

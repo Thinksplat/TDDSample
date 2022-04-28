@@ -27,20 +27,20 @@ public:
 
         inline bool HasExpired()
         {
-            return time.GetMicroseconds() - last_microseconds >= delay_microseconds;
+            return time.GetMicroseconds() - last_microseconds >= interval_microseconds;
         }
 
         inline void Advance()
         {
-            last_microseconds += delay_microseconds;
+            last_microseconds += interval_microseconds;
         }
 
-        TimerWaiter(ITimeProvider &time, uint32_t &last_microseconds, uint32_t delay_microseconds) : time(time), last_microseconds(last_microseconds), delay_microseconds(delay_microseconds) {}
+        TimerWaiter(ITimeProvider &time, uint32_t &last_microseconds, uint32_t interval_microseconds) : time(time), last_microseconds(last_microseconds), interval_microseconds(interval_microseconds) {}
 
     protected:
         ITimeProvider &time;
         uint32_t &last_microseconds;
-        uint32_t delay_microseconds;
+        uint32_t interval_microseconds;
     };
 
     EqualTimeInterval(ITimeProvider &time)
