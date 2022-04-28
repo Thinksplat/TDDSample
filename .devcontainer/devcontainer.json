@@ -21,7 +21,8 @@
 		"ms-vscode.cpptools-extension-pack",
 		"ms-vscode.cpptools-themes",
 		"matepek.vscode-catch2-test-adapter",
-		"akiramiyakoda.cppincludeguard"
+		"akiramiyakoda.cppincludeguard",
+		"eamodio.gitlens"
 	],
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
