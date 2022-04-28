@@ -1,7 +1,4 @@
 #include "bsp_main.h"
-#include "lib/Stopwatch.h"
-#include "lib-behaviour/OnOff.h"
-#include "lib-behaviour/Wait.h"
 #include "lib-behaviour/Blink.h"
 #include "lib/EqualTimeInterval.h"
 
@@ -25,6 +22,9 @@ void SOS(IIntegerConsumer &led, ITimeProvider &time)
     // S
     Behaviour::Blink(led, shortwait, 3);
     longwait.Wait();
+
+    // Pause for 1 second
+    etw.Wait(1000000);
 }
 
 void run_program()
@@ -34,6 +34,5 @@ void run_program()
     while (bsp.KeepRunning().GetBool())
     {
         SOS(bsp.LED(), bsp.Time());
-        Behaviour::Wait(bsp.Time(), 1000000);
     }
 }

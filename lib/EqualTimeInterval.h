@@ -50,6 +50,12 @@ public:
         return TimerWaiter(time, last_microseconds, delay_microseconds);
     }
 
+    void Wait(uint32_t delay_microseconds)
+    {
+        TimerWaiter waiter(time, last_microseconds, delay_microseconds);
+        waiter.Wait();
+    }
+
 private:
     ITimeProvider &time;
     uint32_t last_microseconds;
