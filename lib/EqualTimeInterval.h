@@ -52,8 +52,7 @@ public:
 
     void Wait(uint32_t delay_microseconds)
     {
-        TimerWaiter waiter(time, last_microseconds, delay_microseconds);
-        waiter.Wait();
+        CreateWaiter(delay_microseconds).Wait();
     }
 
 private:

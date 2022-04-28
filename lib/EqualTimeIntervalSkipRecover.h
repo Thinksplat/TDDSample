@@ -17,9 +17,11 @@ public:
             : waiter(waiter)
         {
         }
-        void Wait() {
+        void Wait()
+        {
             // The skipping process
-            while(waiter.HasExpired()) {
+            while (waiter.HasExpired())
+            {
                 waiter.Advance();
             }
             waiter.Wait();
@@ -28,9 +30,15 @@ public:
     private:
         EqualTimeInterval::TimerWaiter waiter;
     };
+
     SkipRecoverWaiter CreateWaiter(uint32_t delay_microseconds)
     {
         return SkipRecoverWaiter(eqi.CreateWaiter(delay_microseconds));
+    }
+
+    void Wait(uint32_t delay_microseconds)
+    {
+        CreateWaiter(delay_microseconds).Wait();
     }
 
 private:
