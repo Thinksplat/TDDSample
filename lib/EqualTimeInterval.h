@@ -14,11 +14,15 @@ public:
         void Wait()
         {
             // we use these calculations to deal with overflow properly
-            while (!HasExpired())
+            while (NotReady())
             {
                 // Spin
             }
             Advance();
+        }
+
+        inline bool NotReady() {
+            return !HasExpired();
         }
 
         inline bool HasExpired()
