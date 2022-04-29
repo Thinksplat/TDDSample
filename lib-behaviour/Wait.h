@@ -1,7 +1,7 @@
 #ifndef FB185EEF_26A2_4C49_BF99_EDBC19BBBB11
 #define FB185EEF_26A2_4C49_BF99_EDBC19BBBB11
 
-#include "lib/ITimeProvider.h"
+#include "interface/ITimeProvider.h"
 #include "lib/Stopwatch.h"
 
 namespace Behaviour

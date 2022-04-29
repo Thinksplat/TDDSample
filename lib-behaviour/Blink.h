@@ -1,8 +1,8 @@
 #ifndef C366AC13_245C_4678_BC51_A8CD2EC14545
 #define C366AC13_245C_4678_BC51_A8CD2EC14545
 
-#include "lib/IIntegerConsumer.h"
-#include "lib/ITimeWaiter.h"
+#include "interface/IIntegerConsumer.h"
+#include "interface/ITimeWaiter.h"
 #include "lib-behaviour/OnOff.h"
 
 namespace Behaviour

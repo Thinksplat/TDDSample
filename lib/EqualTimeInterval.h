@@ -1,8 +1,8 @@
 #ifndef E21D3C25_B801_4579_B115_5C89FA7A13F9
 #define E21D3C25_B801_4579_B115_5C89FA7A13F9
 
-#include "lib/ITimeProvider.h"
-#include "ITimeWaiter.h"
+#include "interface/ITimeProvider.h"
+#include "interface/ITimeWaiter.h"
 
 // On overframe will immediately return to attempt to catch up
 class EqualTimeInterval

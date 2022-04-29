@@ -1,7 +1,7 @@
 #ifndef BF04202A_3954_46A7_8763_D6A6230754B9
 #define BF04202A_3954_46A7_8763_D6A6230754B9
 
-#include "lib/ITimeProvider.h"
+#include "interface/ITimeProvider.h"
 
 class Stopwatch
 {

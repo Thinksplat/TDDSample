@@ -1,7 +1,7 @@
 #ifndef B8751227_E850_4FDC_8820_01E664E85DB6
 #define B8751227_E850_4FDC_8820_01E664E85DB6
 
-#include "lib/IBooleanProvider.h"
+#include "interface/IBooleanProvider.h"
 
 class MockBoolean : public IBooleanProvider
 {

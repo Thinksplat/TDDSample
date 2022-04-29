@@ -2,7 +2,7 @@
 #define FB6EFA69_7858_43C6_A633_206114D4A6B2
 
 #include <functional>
-#include "lib/IIntegerProvider.h"
+#include "interface/IIntegerProvider.h"
 
 class MockIntegerLambda : public IIntegerProvider
 {

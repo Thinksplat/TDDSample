@@ -1,9 +1,9 @@
 #ifndef CDE357EC_2341_497D_89EA_594BDEF60D24
 #define CDE357EC_2341_497D_89EA_594BDEF60D24
 
-#include "lib/IIntegerProvider.h"
-#include "lib/IBooleanProvider.h"
-#include "lib/ITimer.h"
+#include "interface/IIntegerProvider.h"
+#include "interface/IBooleanProvider.h"
+#include "interface/ITimer.h"
 
 namespace Behaviour
 {

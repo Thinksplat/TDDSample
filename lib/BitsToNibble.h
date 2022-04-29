@@ -1,8 +1,8 @@
 #ifndef E6A14C88_2DD2_482F_93FA_869F1B594AE9
 #define E6A14C88_2DD2_482F_93FA_869F1B594AE9
 
-#include "lib/IIntegerProvider.h"
-#include "lib/IBooleanProvider.h"
+#include "interface/IIntegerProvider.h"
+#include "interface/IBooleanProvider.h"
 #include "shared/bit_conversions.h"
 
 class BitsToNibble : public IIntegerProvider

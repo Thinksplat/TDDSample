@@ -1,7 +1,7 @@
 #ifndef F68871D7_58C1_4A18_BF48_B9079CBCD0B2
 #define F68871D7_58C1_4A18_BF48_B9079CBCD0B2
 
-#include "lib/IIntegerConsumer.h"
+#include "interface/IIntegerConsumer.h"
 #include <vector>
 
 class IntegerConsumerRecorder : public IIntegerConsumer

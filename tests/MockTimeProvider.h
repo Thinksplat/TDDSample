@@ -1,7 +1,7 @@
 #ifndef C8112EE8_BA4D_4599_B14E_357AFBF3E193
 #define C8112EE8_BA4D_4599_B14E_357AFBF3E193
 
-#include "lib/ITimeProvider.h"
+#include "interface/ITimeProvider.h"
 
 class MockTimeProvider : public ITimeProvider
 {

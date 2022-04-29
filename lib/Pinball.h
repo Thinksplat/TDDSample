@@ -1,11 +1,11 @@
 #ifndef C1618207_A198_4257_92EA_BEE9F994DD12
 #define C1618207_A198_4257_92EA_BEE9F994DD12
 
-#include "lib/IIntegerProvider.h"
-#include "lib/IBooleanProvider.h"
+#include "interface/IIntegerProvider.h"
+#include "interface/IBooleanProvider.h"
 #include "lib/BitsToNibble.h"
 #include "lib/StableInteger.h"
-#include "lib/ITimer.h"
+#include "interface/ITimer.h"
 #include "lib-behaviour/LastValidValue.h"
 
 class Pinball : public IIntegerProvider

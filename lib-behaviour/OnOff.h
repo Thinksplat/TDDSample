@@ -1,8 +1,8 @@
 #ifndef D6560AD8_CADB_40B0_8B37_0E2F0B74B126
 #define D6560AD8_CADB_40B0_8B37_0E2F0B74B126
 
-#include "lib/IIntegerConsumer.h"
-#include "lib/ITimeWaiter.h"
+#include "interface/IIntegerConsumer.h"
+#include "interface/ITimeWaiter.h"
 
 namespace Behaviour
 {

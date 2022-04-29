@@ -1,8 +1,8 @@
 #ifndef FFE976F7_54E2_4A83_AF64_5E42C6DEE97D
 #define FFE976F7_54E2_4A83_AF64_5E42C6DEE97D
 
-#include "lib/IIntegerProvider.h"
-#include "lib/IBooleanProvider.h"
+#include "interface/IIntegerProvider.h"
+#include "interface/IBooleanProvider.h"
 
 namespace Behaviour {
     // Returns the last valid value of the provider while isValid was true

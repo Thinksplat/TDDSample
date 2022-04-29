@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 #include <functional>
-#include "lib/IIntegerProvider.h"
+#include "interface/IIntegerProvider.h"
 #include "MockIntegerLambda.h"
 #include "MockBooleanLambda.h"
 #include "MockTimeLambda.h"

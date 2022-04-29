@@ -1,7 +1,7 @@
 #ifndef E4C754FD_DE68_4A94_946C_47B3D09CAF35
 #define E4C754FD_DE68_4A94_946C_47B3D09CAF35
 
-#include "lib/IIntegerProvider.h"
+#include "interface/IIntegerProvider.h"
 
 class NibblesToInteger : public IIntegerProvider
 {

@@ -1,7 +1,7 @@
 #ifndef AB5BB5FE_275E_496C_ACAA_D2815B17C4B3
 #define AB5BB5FE_275E_496C_ACAA_D2815B17C4B3
 
-#include "lib/IIntegerProvider.h"
+#include "interface/IIntegerProvider.h"
 
 class MockInteger : public IIntegerProvider {
 public:

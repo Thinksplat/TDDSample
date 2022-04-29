@@ -1,8 +1,8 @@
 #ifndef E7FBD4F9_E87D_4319_8227_573A2290AD49
 #define E7FBD4F9_E87D_4319_8227_573A2290AD49
 
-#include "lib/ITimer.h"
-#include "lib/ITimeProvider.h"
+#include "interface/ITimer.h"
+#include "interface/ITimeProvider.h"
 #include "lib/Stopwatch.h"
 
 class TimeTimer : public ITimer

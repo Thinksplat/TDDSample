@@ -2,7 +2,7 @@
 #define EBEE678B_AF26_44F0_A0E2_E953FB4C238C
 
 #include <functional>
-#include "lib/ITimeProvider.h"
+#include "interface/ITimeProvider.h"
 
 class MockTimeLambda : public ITimeProvider
 {

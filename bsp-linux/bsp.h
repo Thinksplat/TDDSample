@@ -1,9 +1,9 @@
 #ifndef A9CF6D59_0CED_454A_8B64_A9D9CDD92F45
 #define A9CF6D59_0CED_454A_8B64_A9D9CDD92F45
 
-#include "lib/ITimeProvider.h"
-#include "lib/IBSP.h"
-#include "lib/IIntegerConsumer.h"
+#include "interface/ITimeProvider.h"
+#include "interface/IBSP.h"
+#include "interface/IIntegerConsumer.h"
 #include "tests/MockTimeLambda.h"
 #include "tests/MockBooleanLambda.h"
 #include "tests/Sim.h"

@@ -1,8 +1,8 @@
 #ifndef C0EFC7C9_E77D_484E_9F5F_B7D351AF2D1B
 #define C0EFC7C9_E77D_484E_9F5F_B7D351AF2D1B
 
-#include "lib/IBooleanProvider.h"
-#include "lib/ITimeProvider.h"
+#include "interface/IBooleanProvider.h"
+#include "interface/ITimeProvider.h"
 #include <vector>
 #include <algorithm>
 #include <memory>

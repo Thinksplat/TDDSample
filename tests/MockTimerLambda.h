@@ -1,7 +1,7 @@
 #ifndef F7711BC3_2A87_4660_8819_DE50ABE752CD
 #define F7711BC3_2A87_4660_8819_DE50ABE752CD
 
-#include "lib/ITimer.h"
+#include "interface/ITimer.h"
 #include <functional>
 
 class MockTimerLambda : public ITimer {

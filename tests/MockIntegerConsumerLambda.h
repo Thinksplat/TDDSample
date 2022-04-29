@@ -1,7 +1,7 @@
 #ifndef DDFD5FCE_CCD0_4004_9E8E_D200DDC27617
 #define DDFD5FCE_CCD0_4004_9E8E_D200DDC27617
 
-#include "lib/IIntegerConsumer.h"
+#include "interface/IIntegerConsumer.h"
 
 class MockIntegerConsumerLambda : public IIntegerConsumer
 {

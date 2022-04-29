@@ -1,7 +1,7 @@
 #ifndef CBBFF31D_8C43_4472_9AED_77993103900F
 #define CBBFF31D_8C43_4472_9AED_77993103900F
 
-#include "lib/IIntegerConsumer.h"
+#include "interface/IIntegerConsumer.h"
 #include <Arduino.h>
 
 class ArduinoWritePin : public IIntegerConsumer

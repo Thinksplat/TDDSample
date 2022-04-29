@@ -1,8 +1,8 @@
 #ifndef BEEF5770_1869_43C3_80A6_2E0FABBD9EAF
 #define BEEF5770_1869_43C3_80A6_2E0FABBD9EAF
 
-#include "IIntegerProvider.h"
-#include "IIntegerConsumer.h"
+#include "interface/IIntegerProvider.h"
+#include "interface/IIntegerConsumer.h"
 
 class App {
     public:

@@ -2,10 +2,10 @@
 #define C83C0921_98FB_431B_890C_4FFD9A81CD47
 
 #include "lib/stdint.h"
-#include "lib/IBSP.h"
-#include "lib/IBooleanProvider.h"
-#include "lib/ITimeProvider.h"
-#include "lib/IIntegerConsumer.h"
+#include "interface/IBSP.h"
+#include "interface/IBooleanProvider.h"
+#include "interface/ITimeProvider.h"
+#include "interface/IIntegerConsumer.h"
 #include "ArduinoWritePin.h"
 #include "ArduinoPinReader.h"
 #include "ArduinoTime.h"

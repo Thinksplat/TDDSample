@@ -1,7 +1,7 @@
 #ifndef CDFB6AFA_714F_48C7_841D_106B86C9F2BB
 #define CDFB6AFA_714F_48C7_841D_106B86C9F2BB
 
-#include "lib/IBooleanProvider.h"
+#include "interface/IBooleanProvider.h"
 #include <Arduino.h>
 
 class ArduinoPinReader : public IBooleanProvider

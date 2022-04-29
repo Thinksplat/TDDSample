@@ -1,7 +1,7 @@
 #ifndef D40B24E8_1934_45AF_BCB7_E807FFCF7114
 #define D40B24E8_1934_45AF_BCB7_E807FFCF7114
 
-#include "lib/ITimeProvider.h"
+#include "interface/ITimeProvider.h"
 
 class WalkingTime : public ITimeProvider
 {
