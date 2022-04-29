@@ -12,15 +12,14 @@
 // entire simulated BSP.  This will create a known profile
 // and validate that the entire Pinball App runs as expected.
 
-
 class TestBSP : public IBSP
 {
 public:
     static const int stable_time = 20 * 1000;
-    TestBSP(IIntegerConsumer &consumer) 
-    : consumer(consumer), sim(time), 
-    time(10), // increment time by 10 microseconds each step
-    keeprunning(Time(), 1000000 * 10) // run for 10 seconds
+    TestBSP(IIntegerConsumer &consumer)
+        : consumer(consumer), sim(time),
+          time(10),                         // increment time by 10 microseconds each step
+          keeprunning(Time(), 1000000 * 10) // run for 10 seconds
     {
         // Setup a sample profile
         const int noise_time = 10;
@@ -98,29 +97,51 @@ private:
     MockIntegerConsumer led;
 };
 
-// Demonstrate some basic assertions.
-TEST(PinballApp, SetupAndRun)
+// We run the test once and then validate the recorded data.
+// We might want to use TEST_F or TEST_P instead of TEST_E.
+typedef std::tuple<ITimeProvider::TimeType, int> Record;
+typedef std::vector<Record> Recording;
+static Recording s_recording;
+
+class RecordingTest : public ::testing::Test
 {
-    typedef std::tuple<ITimeProvider::TimeType, int> Record;
-    std::vector<Record> records;
+protected:
     const ITimeProvider::TimeType one_second = 1000000;
+    const int stable_time = TestBSP::stable_time;
 
-    // This is a wierd little circular dependency
-    IBSP *bsp; // Need to do this in order to create the consumer and have access to the variable
-
-    // Record the time and value that was provided
-    MockIntegerConsumerLambda consumer([&records,&bsp](IIntegerConsumer::value_type value)
+    void SetUp() override
     {
-        records.push_back(Record(std::make_tuple(bsp->Time().GetMicroseconds(), value)));
-    });
+        // Use a previous recording if it exists
+        if (s_recording.size() > 0)
+        {
+            recording = s_recording;
+            return;
+        }
+        recording.clear();
 
-    TestBSP testbsp(consumer);
-    bsp = &testbsp;
+        // This is a wierd little circular dependency
+        IBSP *bsp; // Need to do this in order to create the consumer and have access to the variable
 
-    const uint32_t stable_time = TestBSP::stable_time;
-    PinballApp::Run(*bsp, stable_time * 2 / 3); // The stable time window we give the machine is 66% of the actual stable time
+        // Record the time and value that was provided
+        MockIntegerConsumerLambda consumer([this, &bsp](IIntegerConsumer::value_type value)
+                                           { recording.push_back(Record(std::make_tuple(bsp->Time().GetMicroseconds(), value))); });
 
-    // The expected pattern should output values 
+        TestBSP testbsp(consumer);
+        bsp = &testbsp;
+
+        const uint32_t stable_time = TestBSP::stable_time;
+        PinballApp::Run(*bsp, stable_time * 2 / 3); // The stable time window we give the machine is 66% of the actual stable time
+        s_recording = recording;                    // cache this
+    }
+    Recording recording;
+};
+
+// Demonstrate some basic assertions.
+TEST_F(RecordingTest, ExpectedValuesAtTimes)
+{
+    const Recording &records = recording;
+
+    // The expected pattern should output values
     // 237, 42, and 99
     // at times
     // 4, 6, and 6.5 seconds.
@@ -133,45 +154,59 @@ TEST(PinballApp, SetupAndRun)
         auto it = std::find_if(records.begin(), records.end(),
                                [&time](const Record &r)
                                {
-                                   return std::get<0>(r) > time-time_range && std::get<0>(r) < time+time_range;
+                                   return std::get<0>(r) > time - time_range && std::get<0>(r) < time + time_range;
                                });
         EXPECT_NE(it, records.end());
         EXPECT_EQ(std::get<1>(*it), value);
     };
 
-    for(auto &value: records)
-    {
-        std::cout << "Time: " << std::get<0>(value) << " Value: " << std::get<1>(value) << std::endl;
-    }
+    // for (auto &value : records)
+    // {
+    //     std::cout << "Time: " << std::get<0>(value) << " Value: " << std::get<1>(value) << std::endl;
+    // }
 
-    expect_value(237, 4 * one_second + stable_time*2);
-    expect_value(42, 6 * one_second + stable_time*2);
-    expect_value(99, 6.5 * one_second + stable_time*2);
+    expect_value(237, 4 * one_second + stable_time * 2);
+    expect_value(42, 6 * one_second + stable_time * 2);
+    expect_value(99, 6.5 * one_second + stable_time * 2);
+}
+
+TEST_F(RecordingTest, Expect3ValidValues)
+{
+    const Recording &records = recording;
 
     // Should be only three valid values
     int validcount = 0;
-    for(auto &value: records)
+    for (auto &value : records)
     {
-        if(std::get<1>(value) >= 0)
+        if (std::get<1>(value) >= 0)
         {
             validcount++;
         }
     }
 
     EXPECT_EQ(validcount, 3);
+}
+
+TEST_F(RecordingTest, LastValueAroundSecond10)
+{
+    const Recording &records = recording;
 
     // The last value should be between time 10 and 11
     EXPECT_NEAR(std::get<0>(records.back()), 10 * one_second, 11 * one_second);
+}
+
+TEST_F(RecordingTest, ExpectSomeValueEverySecond)
+{
+    const Recording &records = recording;
 
     // There should be at least one value every second
     // (technically every second + the transmit time)
     const uint32_t max_value_gap = one_second + stable_time * 3; // 3 times stable time to give it a fudge factor
     uint32_t lasttime = 0;
-    for(auto &value: records)
+    for (auto &value : records)
     {
         uint32_t diff_from_last = std::get<0>(value) - lasttime;
         EXPECT_LT(diff_from_last, max_value_gap);
         lasttime = std::get<0>(value);
     }
-
 }
