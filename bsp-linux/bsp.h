@@ -4,6 +4,7 @@
 #include "interface/ITimeProvider.h"
 #include "interface/IBSP.h"
 #include "interface/IIntegerConsumer.h"
+#include "lib/TimeTimer.h"
 #include "tests/MockTimeLambda.h"
 #include "tests/MockBooleanLambda.h"
 #include "tests/Sim.h"
@@ -45,13 +46,20 @@ private:
     }
 };
 
-class BSP : IBSP
+class StdoutConsumer : public IIntegerConsumer {
+public:
+    void Consume(int16_t value) override
+    {
+        std::cout << "Consumer: " << value << std::endl;
+    }
+};
+
+class BSP : public IBSP
 {
 public:
     BSP() : pin0([this]()
                  { return this->Time().GetMicroseconds() / 1000000 % 2 == 0; }),
-            keeprunning([this]()
-                        { return this->Time().GetMicroseconds() < 1000000 * 10; }),
+            keeprunning(Time(), 1000000*10),
             sim(timemock)
     {
     }
@@ -61,7 +69,29 @@ public:
         return timemock;
     }
 
+    IIntegerConsumer &Consumer() {
+        return consumer;
+    }
+
+    IBooleanProvider &Enable()
+    {
+        return pin0;
+    }
+
     IBooleanProvider &Pin0()
+    {
+        return pin0;
+    }
+
+    IBooleanProvider &Pin1()
+    {
+        return pin0;
+    }
+    IBooleanProvider &Pin2()
+    {
+        return pin0;
+    }
+    IBooleanProvider &Pin3()
     {
         return pin0;
     }
@@ -71,7 +101,7 @@ public:
         return led;
     }
 
-    IBooleanProvider &KeepRunning()
+    ITimer &RunningTimer()
     {
         return keeprunning;
     }
@@ -79,9 +109,11 @@ public:
 private:
     LinuxTime timemock;
     MockBooleanLambda pin0;
-    MockBooleanLambda keeprunning;
+
+    TimeTimer keeprunning;
     LinuxLED led;
     Sim sim;
+    StdoutConsumer consumer;
 };
 
 #endif /* A9CF6D59_0CED_454A_8B64_A9D9CDD92F45 */

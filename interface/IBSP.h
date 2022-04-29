@@ -4,22 +4,28 @@
 class ITimeProvider;
 class IBooleanProvider;
 class IIntegerConsumer;
+class ITimer;
 
 class IBSP
 {
-    ITimeProvider &Time();
-    // A provider to tell the program to keep running or stop.
-    IBooleanProvider &KeepRunning();
+public:
+    virtual ITimeProvider &Time() = 0;
+
+    // A timer that expires when we should stop running
+    virtual ITimer &RunningTimer() = 0;
 
     // LED for visible status if
-    IIntegerConsumer &LED();
+    virtual IIntegerConsumer &LED() = 0;
+
+    // Where the data is sent to
+    virtual IIntegerConsumer &Consumer() = 0;
 
     // The 5 data buss pins
-    IBooleanProvider &Enable();
-    IBooleanProvider &Pin0();
-    IBooleanProvider &Pin1();
-    IBooleanProvider &Pin2();
-    IBooleanProvider &Pin3();
+    virtual IBooleanProvider &Enable() = 0;
+    virtual IBooleanProvider &Pin0() = 0;
+    virtual IBooleanProvider &Pin1() = 0;
+    virtual IBooleanProvider &Pin2() = 0;
+    virtual IBooleanProvider &Pin3() = 0;
 };
 
 #endif /* A5610071_B08E_49B8_B5AA_4C232DA48081 */

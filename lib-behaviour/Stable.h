@@ -7,14 +7,20 @@
 
 namespace Behaviour
 {
-    static IIntegerProvider::value_type Stable(IIntegerProvider &provider, IBooleanProvider &isValid, ITimer &timer)
+    /// @brief Returns the last valid value of the provider
+    /// @param isValid Keep reading while isValid continues to provide true
+    /// @param value The value we are monitoring
+    /// @return The last valid value of the provider
+    static IIntegerProvider::value_type Stable(IIntegerProvider &value, IBooleanProvider &isValid, ITimer &timer)
     {
+        // Reset the timer so we're starting clean
         timer.Reset();
-        IIntegerProvider::value_type lastvalue = provider.GetInteger();
+
+        IIntegerProvider::value_type lastvalue = value.GetInteger();
         // Do this while we're allowed to
         while (isValid.GetBool())
         {
-            IIntegerProvider::value_type thisvalue = provider.GetInteger();
+            IIntegerProvider::value_type thisvalue = value.GetInteger();
             // If the value has changed, reset the timer
             if (thisvalue != lastvalue)
             {
@@ -27,7 +33,8 @@ namespace Behaviour
                 return lastvalue;
             }
         }
-        // If we've exited the loop, the value is invalid
+        // If we've exited the loop, the value is invalid.
+        // (valid values exit early inside the loop)
         return -1;
     }
 }

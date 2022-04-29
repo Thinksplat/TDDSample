@@ -34,7 +34,7 @@ public:
         // Read the last stable nibble
         high_nibble = Behaviour::LastValidValue(enable, stable_nibble);
 
-        // if one is invalid the entire thing is invalid
+        // if low or high is invalid the entire thing is invalid
         if(low_nibble < 0 || high_nibble < 0) {
             return -1;
         }

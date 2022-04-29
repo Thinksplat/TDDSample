@@ -41,3 +41,9 @@ add_executable(
   PrototypeReader
   ${PROTOTYPEREADER_SRCS}
 )
+
+FILE(GLOB PROTOTYPEREADER_SRCS PrototypePinball/*.cpp)
+add_executable(
+  PrototypePinball
+  ${PROTOTYPEREADER_SRCS}
+)

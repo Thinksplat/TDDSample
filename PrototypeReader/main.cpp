@@ -31,7 +31,7 @@ void run_program()
 {
     BSP bsp;
 
-    while (bsp.KeepRunning().GetBool())
+    while (!bsp.RunningTimer().HasExpired())
     {
         SOS(bsp.LED(), bsp.Time());
     }
