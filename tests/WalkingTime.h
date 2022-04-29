@@ -6,9 +6,10 @@
 class WalkingTime : public ITimeProvider
 {
 public:
+    WalkingTime(uint32_t increment = 1) : increment(increment) {}
     uint32_t GetMicroseconds() override
     {
-        return time++;
+        return time+=increment;
     }
     void SetTime(uint32_t t)
     {
@@ -24,6 +25,7 @@ public:
     }
 
 protected:
+    uint32_t increment;
     uint32_t time = 0;
 };
 

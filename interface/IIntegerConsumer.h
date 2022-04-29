@@ -6,7 +6,7 @@
 // Push consumer for an integer value
 class IIntegerConsumer {
     public:
-    typedef int32_t value_type;
+    typedef int16_t value_type;
     virtual void Consume(int16_t value) = 0;
 };
 

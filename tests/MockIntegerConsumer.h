@@ -4,23 +4,6 @@
 #include "interface/IIntegerConsumer.h"
 #include <functional>
 
-class MockIntegerConsumerLambda : public IIntegerConsumer
-{
-public:
-    MockIntegerConsumerLambda(std::function<void(IIntegerConsumer::value_type)> lambda)
-        : m_lambda(lambda)
-    {
-    }
-
-    void Consume(int16_t value) override
-    {
-        m_lambda(value);
-    }
-
-private:
-    std::function<void(IIntegerConsumer::value_type)> m_lambda;
-};
-
 class MockIntegerConsumer : public IIntegerConsumer
 {
 public:

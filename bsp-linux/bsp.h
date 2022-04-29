@@ -8,6 +8,7 @@
 #include "tests/MockTimeLambda.h"
 #include "tests/MockBooleanLambda.h"
 #include "tests/Sim.h"
+#include "tests/PinballProfile.h"
 // include files for gettimeofday
 #include <sys/time.h>
 #include <iostream>
@@ -46,7 +47,8 @@ private:
     }
 };
 
-class StdoutConsumer : public IIntegerConsumer {
+class StdoutConsumer : public IIntegerConsumer
+{
 public:
     void Consume(int16_t value) override
     {
@@ -59,9 +61,31 @@ class BSP : public IBSP
 public:
     BSP() : pin0([this]()
                  { return this->Time().GetMicroseconds() / 1000000 % 2 == 0; }),
-            keeprunning(Time(), 1000000*10),
+            keeprunning(Time(), 1000000 * 10),
             sim(timemock)
     {
+
+        // Setup a sample profile
+        const int noise_time = 10;
+        const int stable_time = 20 * 1000; // 20ms
+        PinballProfile::GenPinball(sim,
+                                   4 * 1000000, // 2 seconds in
+                                   stable_time * 3 / 2,
+                                   stable_time * 3 / 2,
+                                   noise_time, 0xd, 0xe);
+        // Create another 6 seconds in
+        PinballProfile::GenPinball(sim,
+                                   6 * 1000000, // 2 seconds in
+                                   stable_time * 3 / 2,
+                                   stable_time * 3 / 2,
+                                   noise_time, 42 & 0xf, 42 >> 4);
+
+        // Create another 6.5 seconds in
+        PinballProfile::GenPinball(sim,
+                                   6.5 * 1000000, // 2 seconds in
+                                   stable_time * 3 / 2,
+                                   stable_time * 3 / 2,
+                                   noise_time, 99 & 0xf, 99 >> 4);
     }
 
     ITimeProvider &Time()
@@ -69,7 +93,8 @@ public:
         return timemock;
     }
 
-    IIntegerConsumer &Consumer() {
+    IIntegerConsumer &Consumer()
+    {
         return consumer;
     }
 

@@ -2,6 +2,7 @@
 #include "lib-behaviour/OnOff.h"
 #include "WalkingTime.h"
 #include "MockIntegerConsumer.h"
+#include "MockIntegerConsumerLambda.h"
 #include "IntegerConsumerRecorder.h"
 #include "lib/EqualTimeInterval.h"
 #include "tests/MockTimerLambda.h"
