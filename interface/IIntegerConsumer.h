@@ -3,6 +3,7 @@
 
 #include "lib/stdint.h"
 
+// Push consumer for an integer value
 class IIntegerConsumer {
     public:
     typedef int32_t value_type;

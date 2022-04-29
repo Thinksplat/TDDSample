@@ -2,11 +2,11 @@
 #define D6560AD8_CADB_40B0_8B37_0E2F0B74B126
 
 #include "interface/IIntegerConsumer.h"
-#include "interface/ITimeWaiter.h"
+#include "interface/IWaiter.h"
 
 namespace Behaviour
 {
-    static void OnOff(IIntegerConsumer &led, ITimeWaiter &waiter)
+    static void OnOff(IIntegerConsumer &led, IWaiter &waiter)
     {
         // ON
         led.Consume(1);

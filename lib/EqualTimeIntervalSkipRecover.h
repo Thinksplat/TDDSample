@@ -10,7 +10,7 @@ public:
         : eqi(time)
     {
     }
-    class SkipRecoverWaiter : public ITimeWaiter
+    class SkipRecoverWaiter : public IWaiter
     {
     public:
         SkipRecoverWaiter(const EqualTimeInterval::TimerWaiter &waiter)

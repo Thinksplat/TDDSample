@@ -2,13 +2,13 @@
 #define E21D3C25_B801_4579_B115_5C89FA7A13F9
 
 #include "interface/ITimeProvider.h"
-#include "interface/ITimeWaiter.h"
+#include "interface/IWaiter.h"
 
 // On overframe will immediately return to attempt to catch up
 class EqualTimeInterval
 {
 public:
-    class TimerWaiter : public ITimeWaiter
+    class TimerWaiter : public IWaiter
     {
     public:
         void Wait()

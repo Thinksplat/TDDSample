@@ -1,9 +1,9 @@
 #ifndef DA6A6755_21A6_4743_8988_1F46A84425CA
 #define DA6A6755_21A6_4743_8988_1F46A84425CA
 
-#include "interface/ITimeWaiter.h"
+#include "interface/IWaiter.h"
 
-class ITimer : public ITimeWaiter
+class ITimer : public IWaiter
 {
 public:
     void Wait() override {

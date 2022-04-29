@@ -3,6 +3,7 @@
 
 #include "lib/stdint.h"
 
+// Pull provider for the current time in microseconds
 class ITimeProvider {
     public:
         typedef uint32_t TimeType;

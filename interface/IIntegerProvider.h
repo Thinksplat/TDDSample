@@ -3,6 +3,7 @@
 
 #include "lib/stdint.h"
 
+// Pull provider for an integer value
 class IIntegerProvider {
 public:
     typedef int16_t value_type;
