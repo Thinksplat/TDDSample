@@ -32,6 +32,7 @@ TEST(Stopwatch, Overflow) {
 
     // increment past 32bits
     time.SetValue(time.GetMicroseconds() + 0xffff);
+    // Make sure our test harness rolled over properly
     // We're less than we started and greater than 0
     ASSERT_LT(time.GetMicroseconds(), 0xfffffff0);
     ASSERT_GT(time.GetMicroseconds(), 0);

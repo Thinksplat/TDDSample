@@ -18,6 +18,8 @@ public:
 
     uint32_t ElapsedMicroseconds()
     {
+        // This properly handles rollover when the provider goes over
+        // 2^32-1 microseconds.
         return timeProvider.GetMicroseconds() - startTime;
     }
 
