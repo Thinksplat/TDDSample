@@ -109,6 +109,23 @@ protected:
     ITimeProvider &time;
 };
 
+class Accum
+{
+public:
+    Accum(SimProfile &profile, int pin) : profile(profile), pin(pin) {}
+    Accum &Next(bool value, uint32_t holdtime)
+    {
+        profile.AddPoint(pin, value, curtime);
+        curtime += holdtime;
+        return *this;
+    }
+
+private:
+    uint32_t curtime = 0;
+    SimProfile &profile;
+    int pin;
+};
+
 // Simulates the digital inputs and outputs given a profile
 class Sim
 {
@@ -148,6 +165,16 @@ public:
     void AddPoint(PINS pin, bool value, uint32_t time)
     {
         profile.AddPoint(pin, value, time);
+    }
+
+    SimProfile &Profile()
+    {
+        return profile;
+    }
+
+    Accum Accumulate(int pin)
+    {
+        return Accum(profile, pin);
     }
 
 protected:

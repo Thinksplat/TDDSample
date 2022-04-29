@@ -9,6 +9,7 @@ namespace Behaviour
 {
     static IIntegerProvider::value_type Stable(IIntegerProvider &provider, IBooleanProvider &isValid, ITimer &timer)
     {
+        timer.Reset();
         IIntegerProvider::value_type lastvalue = provider.GetInteger();
         // Do this while we're allowed to
         while (isValid.GetBool())

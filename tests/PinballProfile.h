@@ -1,3 +1,6 @@
+#ifndef CDC214BE_3B4B_4931_9229_23CA16DC9983
+#define CDC214BE_3B4B_4931_9229_23CA16DC9983
+
 #include "Sim.h"
 
 class PinballProfile
@@ -37,3 +40,6 @@ public:
         }
     }
 };
+
+
+#endif /* CDC214BE_3B4B_4931_9229_23CA16DC9983 */

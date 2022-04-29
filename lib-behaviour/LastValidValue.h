@@ -6,7 +6,7 @@
 
 namespace Behaviour {
     // Returns the last valid value of the provider while isValid was true
-    IIntegerProvider::value_type LastValidValue(IBooleanProvider &isValid, IIntegerProvider &provider) {
+    static IIntegerProvider::value_type LastValidValue(IBooleanProvider &isValid, IIntegerProvider &provider) {
         auto last_valid = -1;
         while (isValid.GetBool()) {
             auto this_value = provider.GetInteger();

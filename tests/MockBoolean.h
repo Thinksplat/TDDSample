@@ -6,7 +6,7 @@
 class MockBoolean : public IBooleanProvider
 {
 public:
-    MockBoolean(bool value) : value(value) {}
+    MockBoolean(bool value=0) : value(value) {}
     bool GetBool() override { return value; }
     void SetValue(bool value) { this->value = value; }
 private:
