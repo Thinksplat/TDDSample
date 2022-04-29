@@ -1,7 +1,7 @@
 #ifndef DEACFCB3_F9EA_4C00_B325_CE616E6BC45F
 #define DEACFCB3_F9EA_4C00_B325_CE616E6BC45F
 
-// Basic interface to Wait for something to happen
+// Interface to generically Wait for something to happen
 class IWaiter
 {
     public:

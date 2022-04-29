@@ -7,10 +7,6 @@
 class ArduinoTime : public ITimeProvider
 {
 public:
-    ArduinoTime()
-    {
-    }
-
     uint32_t GetMicroseconds() override
     {
         return micros();
