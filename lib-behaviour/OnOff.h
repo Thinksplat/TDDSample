@@ -6,14 +6,14 @@
 
 namespace Behaviour
 {
-    static void OnOff(IIntegerConsumer &led, IWaiter &waiter)
+    static void OnOff(IIntegerConsumer &output, IWaiter &waiter)
     {
         // ON
-        led.Consume(1);
+        output.Consume(1);
         waiter.Wait();
 
         // Off
-        led.Consume(0);
+        output.Consume(0);
         waiter.Wait();
     }
 

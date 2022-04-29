@@ -7,11 +7,11 @@
 
 namespace Behaviour
 {
-    static void Blink(IIntegerConsumer &led, IWaiter &waiter, int count)
+    static void Blink(IIntegerConsumer &output, IWaiter &waiter, int count)
     {
         for (int i = 0; i < count; ++i)
         {
-            Behaviour::OnOff(led, waiter);
+            Behaviour::OnOff(output, waiter);
         }
     }
 }
