@@ -8,6 +8,7 @@
 #include "interface/ITimer.h"
 #include "lib-behaviour/LastValidValue.h"
 #include "lib/BoolTrueWaiter.h"
+#include "shared/bit_conversions.h"
 
 class Pinball : public IIntegerProvider
 {
@@ -40,7 +41,7 @@ public:
         }
 
         // Combine the nibbles into a single value
-        return (high_nibble << 4) | low_nibble;
+        return BitConversions::NibblesToWord(low_nibble, high_nibble);
     }
 
     // Expose the nibble to the outside world for testing
