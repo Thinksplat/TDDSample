@@ -76,6 +76,7 @@ public:
         return sim.Lines().Data0();
     }
 
+
     IBooleanProvider &Pin1()
     {
         return sim.Lines().Data1();
