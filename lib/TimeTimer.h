@@ -7,15 +7,21 @@
 
 class TimeTimer : public ITimer
 {
-    public:
-    TimeTimer(ITimeProvider &timeProvider, ITimeProvider::TimeType timeout) : stopwatch(timeProvider), timeout(timeout) {}
-    bool HasExpired() override {
+public:
+    TimeTimer(ITimeProvider &timeProvider, ITimeProvider::TimeType timeout)
+        : stopwatch(timeProvider), timeout(timeout)
+    {
+    }
+    bool HasExpired() override
+    {
         return stopwatch.ElapsedMicroseconds() >= timeout;
     }
-    void Reset() override {
+    void Reset() override
+    {
         stopwatch.Reset();
     }
-    private:
+
+private:
     Stopwatch stopwatch;
     ITimeProvider::TimeType timeout;
 };
