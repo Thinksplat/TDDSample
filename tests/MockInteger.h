@@ -5,7 +5,7 @@
 
 class MockInteger : public IIntegerProvider {
 public:
-    MockInteger(int16_t value) : value(value) {}
+    MockInteger(int16_t value=0) : value(value) {}
     int16_t GetInteger() override { return value; }
     void SetValue(int16_t value) { this->value = value; }
 private:

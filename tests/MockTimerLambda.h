@@ -6,7 +6,7 @@
 
 class MockTimerLambda : public ITimer {
     public:
-    MockTimerLambda(std::function<bool()> lambda, std::function<void()> reset = [](){}) : expired_lambda(lambda), reset(reset) {}
+    MockTimerLambda(std::function<bool()> lambda = [](){return true;}, std::function<void()> reset = [](){}) : expired_lambda(lambda), reset(reset) {}
      bool HasExpired() override {
             return expired_lambda();
      }

@@ -73,27 +73,27 @@ public:
         return consumer;
     }
 
-    IBooleanProvider &Enable()
+    IBooleanProvider &Transmit()
     {
-        return pin0;
+        return sim.Lines().Transmit();
     }
 
     IBooleanProvider &Pin0()
     {
-        return pin0;
+        return sim.Lines().Data0();
     }
 
     IBooleanProvider &Pin1()
     {
-        return pin0;
+        return sim.Lines().Data1();
     }
     IBooleanProvider &Pin2()
     {
-        return pin0;
+        return sim.Lines().Data2();
     }
     IBooleanProvider &Pin3()
     {
-        return pin0;
+        return sim.Lines().Data3();
     }
 
     IIntegerConsumer &LED()

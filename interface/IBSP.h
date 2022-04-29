@@ -21,7 +21,7 @@ public:
     virtual IIntegerConsumer &Consumer() = 0;
 
     // The 5 data buss pins
-    virtual IBooleanProvider &Enable() = 0;
+    virtual IBooleanProvider &Transmit() = 0;
     virtual IBooleanProvider &Pin0() = 0;
     virtual IBooleanProvider &Pin1() = 0;
     virtual IBooleanProvider &Pin2() = 0;
