@@ -1,4 +1,3 @@
-#include "bsp_main.h" // Just can't use any functionality from here
 #include <Arduino.h>
 
 static const int pin0 = 0;
@@ -108,7 +107,12 @@ readValue()
     return (high_nibble << 4) | low_nibble;
 }
 
-void run_program()
+void setup()
+{
+
+}
+
+void loop()
 {
     // Initialize the board
     // Setup all the pin outputs inputs stuff like that
