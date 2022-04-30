@@ -72,10 +72,10 @@ int16_t ReadStableNibble() {
             timer.Reset();
         }
         if(timer.HasExpired()) {
-            return -1;
+            return value;
         }
     }
-    return value;
+    return -1;
 }
 
 int16_t ReadLastStableNibble() {
