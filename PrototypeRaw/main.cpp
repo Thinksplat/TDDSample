@@ -27,14 +27,18 @@ public:
     }
 
 protected:
-    uint32_t Elapsed() {
+    uint32_t Elapsed()
+    {
+        // works for overflow.  Inverted subtraction returns the correct
+        // positive value.
         return micros() - starttime;
     }
     const uint32_t timeout_us;
     uint32_t starttime;
 };
 
-bool isTransmitting() {
+bool isTransmitting()
+{
     return digitalRead(transmitPin) == HIGH;
 }
 
@@ -60,31 +64,38 @@ int16_t ReadNibble()
            digitalRead(pin3) << 3;
 }
 
-int16_t ReadStableNibble() {
+int16_t ReadStableNibble()
+{
     int16_t value = -1;
 
     Timer timer(STABLE_TIME);
-    while(isTransmitting()) {
+    while (isTransmitting())
+    {
         auto newvalue = ReadNibble();
-        if(newvalue != value) {
+        if (newvalue != value)
+        {
             value = newvalue;
             timer.Reset();
         }
-        if(timer.HasExpired()) {
+        if (timer.HasExpired())
+        {
             return value;
         }
     }
     return -1;
 }
 
-int16_t ReadLastStableNibble() {
+int16_t ReadLastStableNibble()
+{
     int16_t lastvalue = -1;
 
-    while(isTransmitting()) {
-       auto thisvalue = ReadStableNibble();
-       if(lastvalue >= 0) {
-           lastvalue = thisvalue;
-       }
+    while (isTransmitting())
+    {
+        auto thisvalue = ReadStableNibble();
+        if (lastvalue >= 0)
+        {
+            lastvalue = thisvalue;
+        }
     }
     return lastvalue;
 }
@@ -100,7 +111,8 @@ readValue()
     auto low_nibble = ReadStableNibble();
     auto high_nibble = ReadLastStableNibble();
 
-    if(low_nibble < 0 || high_nibble < 0) {
+    if (low_nibble < 0 || high_nibble < 0)
+    {
         return -1;
     }
 
@@ -109,7 +121,6 @@ readValue()
 
 void setup()
 {
-
 }
 
 void loop()
