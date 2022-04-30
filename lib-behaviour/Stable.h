@@ -16,7 +16,7 @@ namespace Behaviour
         // Reset the timer so we're starting clean
         timer.Reset();
 
-        IIntegerProvider::value_type lastvalue = value.GetInteger();
+        IIntegerProvider::value_type lastvalue = -1;
         // Do this while we're allowed to
         while (isValid.GetBool())
         {

@@ -108,25 +108,25 @@ public:
         return sim.Lines().Data0();
     }
 
-    IBooleanProvider &Pin1()
+    IBooleanProvider &Pin1() override
     {
         return sim.Lines().Data1();
     }
-    IBooleanProvider &Pin2()
+    IBooleanProvider &Pin2() override
     {
         return sim.Lines().Data2();
     }
-    IBooleanProvider &Pin3()
+    IBooleanProvider &Pin3() override
     {
         return sim.Lines().Data3();
     }
 
-    IIntegerConsumer &LED()
+    IIntegerConsumer &LED() override
     {
         return led;
     }
 
-    ITimer &RunningTimer()
+    ITimer &RunningTimer() override
     {
         return keeprunning;
     }
