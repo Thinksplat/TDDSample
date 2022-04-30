@@ -88,22 +88,22 @@ public:
                                    noise_time, 99 & 0xf, 99 >> 4);
     }
 
-    ITimeProvider &Time()
+    ITimeProvider &Time() override
     {
         return timemock;
     }
 
-    IIntegerConsumer &Consumer()
+    IIntegerConsumer &Consumer() override
     {
         return consumer;
     }
 
-    IBooleanProvider &Transmit()
+    IBooleanProvider &Transmit() override
     {
         return sim.Lines().Transmit();
     }
 
-    IBooleanProvider &Pin0()
+    IBooleanProvider &Pin0() override
     {
         return sim.Lines().Data0();
     }

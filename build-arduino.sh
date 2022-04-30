@@ -1,3 +1,3 @@
 cd platformio
-sh prepare.sh
+sh prepare.sh $1
 pio run

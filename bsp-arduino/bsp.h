@@ -47,27 +47,27 @@ public:
         return led;
     }
 
-    IBooleanProvider &Pin0()
+    IBooleanProvider &Pin0() override
     {
         return pin0;
     }
 
-      IBooleanProvider &Pin1()
+      IBooleanProvider &Pin1() override
     {
         return pin1;
     }
 
-      IBooleanProvider &Pin2()
+      IBooleanProvider &Pin2() override
     {
         return pin2;
     }
 
-      IBooleanProvider &Pin3()
+      IBooleanProvider &Pin3() override
     {
         return pin3;
     }
 
-    IBooleanProvider &Enable()
+    IBooleanProvider &Transmit() override
     {
         return enable;
     }
