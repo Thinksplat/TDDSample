@@ -13,14 +13,18 @@ namespace Behaviour
     /// @return The last valid value of the provider
     static IIntegerProvider::value_type Stable(IIntegerProvider &value, IBooleanProvider &isValid, ITimer &timer)
     {
-        // Reset the timer so we're starting clean
-        timer.Reset();
+        // We don't reset the timer on entry because the
+        // logic below will fall through to reset the value
+        // after the first read (because lastvalue is -1)
 
         IIntegerProvider::value_type lastvalue = -1;
         // Do this while we're allowed to
         while (isValid.GetBool())
         {
             IIntegerProvider::value_type thisvalue = value.GetInteger();
+            if(thisvalue < 0) {
+                return thisvalue;
+            }
             // If the value has changed, reset the timer
             if (thisvalue != lastvalue)
             {
