@@ -13,23 +13,21 @@
 #include "ArduinoSerialConsumer.h"
 #include <Arduino.h>
 
+// For some reason, for some platforms LED_BUILTIN isn't defined
+// in Arduino.h
 #ifndef LED_BUILTIN
 #define LED_BUILTIN 2
 #endif
 
-const static int PINBALL_PIN0 = 5;
-const static int PINBALL_PIN1 = 6;
-const static int PINBALL_PIN2 = 7;
-const static int PINBALL_PIN3 = 8;
-const static int PINBALL_TRANSMIT_PIN = 9;
-
-class ForeverTimer : public ITimer {
+class ForeverTimer : public ITimer
+{
 public:
-    bool HasExpired() override {
+    bool HasExpired() override
+    {
         return false;
     }
-    void Reset() {
-
+    void Reset()
+    {
     }
 };
 
@@ -55,17 +53,17 @@ public:
         return pin0;
     }
 
-      IBooleanProvider &Pin1() override
+    IBooleanProvider &Pin1() override
     {
         return pin1;
     }
 
-      IBooleanProvider &Pin2() override
+    IBooleanProvider &Pin2() override
     {
         return pin2;
     }
 
-      IBooleanProvider &Pin3() override
+    IBooleanProvider &Pin3() override
     {
         return pin3;
     }
@@ -75,15 +73,23 @@ public:
         return enable;
     }
 
-    ITimer &RunningTimer() {
+    ITimer &RunningTimer()
+    {
         return keep_running;
     }
 
-    IIntegerConsumer &Consumer() {
+    IIntegerConsumer &Consumer()
+    {
         return consumer;
     }
 
 private:
+    const static int PINBALL_PIN0 = 5;
+    const static int PINBALL_PIN1 = 6;
+    const static int PINBALL_PIN2 = 7;
+    const static int PINBALL_PIN3 = 8;
+    const static int PINBALL_TRANSMIT_PIN = 9;
+
     ForeverTimer keep_running;
     ArduinoTime time;
     ArduinoPinReader pin0, pin1, pin2, pin3;
