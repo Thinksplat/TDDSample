@@ -12,6 +12,15 @@
 #include "ArduinoTime.h"
 #include <Arduino.h>
 
+#ifndef LED_BUILTIN
+#define LED_BUILTIN 2
+#endif
+
+static int PINBALL_PIN0 = 5;
+static int PINBALL_PIN1 = 6;
+static int PINBALL_PIN2 = 7;
+static int PINBALL_PIN3 = 8;
+static int PINBALL_TRANSMIT_PIN = 9;
 
 class ForeverTimer : public ITimer {
 public:
@@ -33,7 +42,7 @@ class SerialConsumer: public IIntegerConsumer {
 class BSP : public IBSP
 {
 public:
-    BSP() : pin0(5), pin1(6), pin2(7), pin3(8), enable(9), led(LED_BUILTIN)
+    BSP() : pin0(PINBALL_PIN0), pin1(PINBALL_PIN1), pin2(PINBALL_PIN2), pin3(PINBALL_PIN3), enable(PINBALL_TRANSMIT_PIN), led(LED_BUILTIN)
     {
     }
 

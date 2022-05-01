@@ -49,18 +49,18 @@ bool isTransmitting()
     return digitalRead(transmitPin) == HIGH;
 }
 
-// Returns 1 when it's high, -1 if timed out
-inttype waitForTransmit(timetype timeout)
+// Returns true when is Transmitting, false if timed out
+bool waitForTransmit(timetype timeout)
 {
     Timer timer(timeout);
     while (!timer.HasExpired())
     {
         if (isTransmitting())
         {
-            return 1;
+            return true;
         }
     }
-    return -1;
+    return false;
 }
 
 inttype ReadNibble()
@@ -79,11 +79,14 @@ inttype ReadStableNibble()
     while (isTransmitting())
     {
         auto newvalue = ReadNibble();
+
+        // Value changed, reset our timer
         if (newvalue != value)
         {
             value = newvalue;
             timer.Reset();
         }
+
         if (timer.HasExpired())
         {
             return value;
@@ -109,7 +112,7 @@ inttype ReadLastStableNibble()
 
 inttype readValue()
 {
-    if (waitForTransmit(TRANSMIT_WAIT_TIME) < 0)
+    if (waitForTransmit(TRANSMIT_WAIT_TIME) == false)
     {
         return -2;
     }

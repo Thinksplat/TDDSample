@@ -5,11 +5,6 @@
 
 extern void run_program();
 
-extern "C" {
-    void setup();
-    void loop();
-}
-
 void setup()
 {
 
