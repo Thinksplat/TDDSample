@@ -100,8 +100,7 @@ int16_t ReadLastStableNibble()
     return lastvalue;
 }
 
-int16_t
-readValue()
+int16_t readValue()
 {
     if (waitForTransmit(TRANSMIT_WAIT_TIME) < 0)
     {
