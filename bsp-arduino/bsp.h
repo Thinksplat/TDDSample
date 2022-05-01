@@ -10,6 +10,7 @@
 #include "ArduinoWritePin.h"
 #include "ArduinoPinReader.h"
 #include "ArduinoTime.h"
+#include "ArduinoSerialConsumer.h"
 #include <Arduino.h>
 
 #ifndef LED_BUILTIN
@@ -30,13 +31,6 @@ public:
     void Reset() {
 
     }
-};
-
-class SerialConsumer: public IIntegerConsumer {
-    public:
-        void Consume(int16_t value) override {
-            Serial.println(value);
-        }
 };
 
 class BSP : public IBSP
@@ -95,7 +89,7 @@ private:
     ArduinoPinReader pin0, pin1, pin2, pin3;
     ArduinoPinReader enable;
     ArduinoWritePin led;
-    SerialConsumer consumer;
+    ArduinoSerialConsumer consumer;
 };
 
 #endif /* C83C0921_98FB_431B_890C_4FFD9A81CD47 */
