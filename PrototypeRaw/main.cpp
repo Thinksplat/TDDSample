@@ -120,10 +120,6 @@ int16_t readValue()
 
 void setup()
 {
-}
-
-void loop()
-{
     // Initialize the board
     // Setup all the pin outputs inputs stuff like that
     pinMode(pin0, INPUT);
@@ -131,10 +127,10 @@ void loop()
     pinMode(pin2, INPUT);
     pinMode(pin3, INPUT);
     pinMode(transmitPin, INPUT);
+}
 
-    while (true)
-    {
-        auto value = readValue();
-        Serial.println(value);
-    }
+void loop()
+{
+    auto value = readValue();
+    Serial.println(value);
 }
