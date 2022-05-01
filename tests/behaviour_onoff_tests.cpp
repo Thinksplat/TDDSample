@@ -7,7 +7,7 @@
 #include "lib/EqualTimeInterval.h"
 #include "tests/MockTimerLambda.h"
 
-TEST(Behavior, OnOffPattern)
+TEST(Behaviour, OnOffPattern)
 {
     std::vector<std::string> pattern;
 
