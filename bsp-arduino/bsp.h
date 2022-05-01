@@ -16,11 +16,11 @@
 #define LED_BUILTIN 2
 #endif
 
-static int PINBALL_PIN0 = 5;
-static int PINBALL_PIN1 = 6;
-static int PINBALL_PIN2 = 7;
-static int PINBALL_PIN3 = 8;
-static int PINBALL_TRANSMIT_PIN = 9;
+const static int PINBALL_PIN0 = 5;
+const static int PINBALL_PIN1 = 6;
+const static int PINBALL_PIN2 = 7;
+const static int PINBALL_PIN3 = 8;
+const static int PINBALL_TRANSMIT_PIN = 9;
 
 class ForeverTimer : public ITimer {
 public:
