@@ -34,7 +34,7 @@ public:
 class BSP : public IBSP
 {
 public:
-    BSP() : pin0(PINBALL_PIN0), pin1(PINBALL_PIN1), pin2(PINBALL_PIN2), pin3(PINBALL_PIN3), enable(PINBALL_TRANSMIT_PIN), led(LED_BUILTIN)
+    BSP() : pin0(DATA_PIN0), pin1(DATA_PIN1), pin2(DATA_PIN2), pin3(DATA_PIN3), enable(DATA_TRANSMIT_PIN), led(LED_BUILTIN)
     {
     }
 
@@ -84,11 +84,11 @@ public:
     }
 
 private:
-    const static int PINBALL_PIN0 = 5;
-    const static int PINBALL_PIN1 = 6;
-    const static int PINBALL_PIN2 = 7;
-    const static int PINBALL_PIN3 = 8;
-    const static int PINBALL_TRANSMIT_PIN = 9;
+    const static int DATA_PIN0 = 5;
+    const static int DATA_PIN1 = 6;
+    const static int DATA_PIN2 = 7;
+    const static int DATA_PIN3 = 8;
+    const static int DATA_TRANSMIT_PIN = 9;
 
     ForeverTimer keep_running;
     ArduinoTime time;
