@@ -1,19 +1,26 @@
 #include <Arduino.h>
 
+// Our ints that we work will will be signed 16 bit values
+// to fit the full range of 0-255 that the bus requires,
+// while allowing negative numbers for error values.
+typedef int16_t inttype;
+// Time is unsigned 32 bit 0 -> 2^32-1
+typedef uint32_t timetype;
+
 static const int pin0 = 0;
 static const int pin1 = 1;
 static const int pin2 = 2;
 static const int pin3 = 3;
 static const int transmitPin = 4;
-static const uint32_t STABLE_TIME = 20 * 1000; // 20ms
-static const uint32_t OneSecond = 1000000;
-static const uint32_t TRANSMIT_WAIT_TIME = OneSecond;
+static const timetype STABLE_TIME = 20 * 1000; // 20ms
+static const timetype OneSecond = 1000000;
+static const timetype TRANSMIT_WAIT_TIME = OneSecond;
 
 // This is really valuable so we're going to reimplement it
 class Timer
 {
 public:
-    Timer(uint32_t timeout_us) : timeout_us(timeout_us)
+    Timer(timetype timeout_us) : timeout_us(timeout_us)
     {
         Reset();
     }
@@ -27,14 +34,14 @@ public:
     }
 
 protected:
-    uint32_t Elapsed()
+    timetype Elapsed()
     {
         // works for overflow.  Inverted subtraction returns the correct
         // positive value.
         return micros() - starttime;
     }
-    const uint32_t timeout_us;
-    uint32_t starttime;
+    const timetype timeout_us;
+    timetype starttime;
 };
 
 bool isTransmitting()
@@ -43,7 +50,7 @@ bool isTransmitting()
 }
 
 // Returns 1 when it's high, -1 if timed out
-int16_t waitForTransmit(uint32_t timeout)
+inttype waitForTransmit(timetype timeout)
 {
     Timer timer(timeout);
     while (!timer.HasExpired())
@@ -56,7 +63,7 @@ int16_t waitForTransmit(uint32_t timeout)
     return -1;
 }
 
-int16_t ReadNibble()
+inttype ReadNibble()
 {
     return digitalRead(pin0) << 0 |
            digitalRead(pin1) << 1 |
@@ -64,9 +71,9 @@ int16_t ReadNibble()
            digitalRead(pin3) << 3;
 }
 
-int16_t ReadStableNibble()
+inttype ReadStableNibble()
 {
-    int16_t value = -1;
+    inttype value = -1;
 
     Timer timer(STABLE_TIME);
     while (isTransmitting())
@@ -85,9 +92,9 @@ int16_t ReadStableNibble()
     return -1;
 }
 
-int16_t ReadLastStableNibble()
+inttype ReadLastStableNibble()
 {
-    int16_t lastvalue = -1;
+    inttype lastvalue = -1;
 
     while (isTransmitting())
     {
@@ -100,7 +107,7 @@ int16_t ReadLastStableNibble()
     return lastvalue;
 }
 
-int16_t readValue()
+inttype readValue()
 {
     if (waitForTransmit(TRANSMIT_WAIT_TIME) < 0)
     {
