@@ -50,7 +50,7 @@ TEST(Stable, IfTheValueEverProvidesNegativeReturnNegativeImmediately)
     // Decrement count every time we read a value and keep
     // track.
     const int error_value = -15;
-    MockIntegerLambda mockInt([&readcount, &count]()
+    MockIntegerLambda mockInt([&readcount, &count, &error_value]()
                               { 
                                   readcount++;
                                   count--;
