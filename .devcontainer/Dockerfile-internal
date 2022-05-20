@@ -5,7 +5,9 @@
 #FROM sres.web.boeing.com:5000/vscode/devcontainers/cpp:0-${VARIANT}
 FROM registry.web.boeing.com/container/boeing-images/stack/ubi8-node16
 
-RUN adduser -G wheel -u 1000 -g 1000 vscode
+RUN adduser -G wheel -u 1000 -g 1000 -d vscode
+RUN mkdir /root
+RUN mkdir -p /home/vscode
 
 ARG SRES_UBI_ID=notset
 ARG SRES_UBI_TOKEN=notset
