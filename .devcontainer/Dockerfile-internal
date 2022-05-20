@@ -13,7 +13,7 @@ ARG SRES_UBI_ID=notset
 ARG SRES_UBI_TOKEN=notset
 RUN echo ${SRES_UBI_ID} > /etc/yum/vars/sresubiid && echo ${SRES_UBI_TOKEN} > /etc/yum/vars/sresubitoken
 
-RUN yum -y install cmake git sudo gnupg2
+RUN yum -y install cmake git sudo
 # [Optional] Install CMake version different from what base image has already installed. 
 # CMake reinstall choices: none, 3.21.5, 3.22.2, or versions from https://cmake.org/download/
 # ARG REINSTALL_CMAKE_VERSION_FROM_SOURCE="none"
