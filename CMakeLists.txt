@@ -3,6 +3,11 @@ project(my_project)
 
 add_compile_options(-Wall -Wextra -pedantic -Werror)
 
+if (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+  # using Clang
+  add_compile_options(-Wno-unused-lambda-capture)
+endif()
+
 # GoogleTest requires at least C++11
 set(CMAKE_CXX_STANDARD 11)
 
