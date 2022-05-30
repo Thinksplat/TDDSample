@@ -16,7 +16,7 @@
 // For some reason, for some platforms LED_BUILTIN isn't defined
 // in Arduino.h
 #ifndef LED_BUILTIN
-#define LED_BUILTIN 25
+#define LED_BUILTIN 2
 #endif
 
 class ForeverTimer : public ITimer
@@ -84,11 +84,11 @@ public:
     }
 
 private:
-    const static int DATA_PIN0 = 5;
-    const static int DATA_PIN1 = 6;
-    const static int DATA_PIN2 = 7;
-    const static int DATA_PIN3 = 8;
-    const static int DATA_TRANSMIT_PIN = 9;
+    const static int DATA_PIN0 = 36;
+    const static int DATA_PIN1 = 37;
+    const static int DATA_PIN2 = 38;
+    const static int DATA_PIN3 = 39;
+    const static int DATA_TRANSMIT_PIN = 34;
 
     ForeverTimer keep_running;
     ArduinoTime time;
