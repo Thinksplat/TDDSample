@@ -16,7 +16,7 @@
 // For some reason, for some platforms LED_BUILTIN isn't defined
 // in Arduino.h
 #ifndef LED_BUILTIN
-#define LED_BUILTIN 2
+#define LED_BUILTIN 25
 #endif
 
 class ForeverTimer : public ITimer
