@@ -56,7 +56,7 @@ public:
 
     TimerWaiter CreateWaiterSeconds(double seconds)
     {
-        return TimerWaiter(time, last_microseconds, (uint32_t)(1000000.0 / seconds));
+        return TimerWaiter(time, last_microseconds, (uint32_t)(1000000.0 * seconds));
     }
 
     TimerWaiter CreateWaiter(uint32_t delay_microseconds)

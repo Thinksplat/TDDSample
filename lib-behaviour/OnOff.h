@@ -6,7 +6,7 @@
 
 namespace Behaviour
 {
-    static void OnOff(IBooleanConsumer &output, IWork &waiter)
+    inline static void OnOff(IBooleanConsumer &output, IWork &waiter)
     {
         // ON
         output.Consume(1);
