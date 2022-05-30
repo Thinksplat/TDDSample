@@ -21,7 +21,8 @@ public:
             Advance();
         }
 
-        inline bool NotReady() {
+        inline bool NotReady()
+        {
             return !HasExpired();
         }
 
@@ -34,7 +35,8 @@ public:
         {
             last_microseconds += interval_microseconds;
         }
-        void Reset() override {
+        void Reset() override
+        {
             // do nothing
         }
 
@@ -52,6 +54,11 @@ public:
         last_microseconds = time.GetMicroseconds();
     }
 
+    TimerWaiter CreateWaiterSeconds(double seconds)
+    {
+        return TimerWaiter(time, last_microseconds, (uint32_t)(1000000.0 / seconds));
+    }
+
     TimerWaiter CreateWaiter(uint32_t delay_microseconds)
     {
         return TimerWaiter(time, last_microseconds, delay_microseconds);
@@ -66,7 +73,5 @@ private:
     ITimeProvider &time;
     uint32_t last_microseconds;
 };
-
-
 
 #endif /* E21D3C25_B801_4579_B115_5C89FA7A13F9 */

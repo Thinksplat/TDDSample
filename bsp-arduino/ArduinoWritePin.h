@@ -1,10 +1,10 @@
 #ifndef CBBFF31D_8C43_4472_9AED_77993103900F
 #define CBBFF31D_8C43_4472_9AED_77993103900F
 
-#include "interface/IIntegerConsumer.h"
+#include "interface/IBooleanConsumer.h"
 #include <Arduino.h>
 
-class ArduinoWritePin : public IIntegerConsumer
+class ArduinoWritePin : public IBooleanConsumer
 {
 public:
     ArduinoWritePin(int pin) : pin(pin)
@@ -12,9 +12,9 @@ public:
         pinMode(pin, OUTPUT);
     }
 
-    void Consume(int16_t value) override
+    void Consume(bool value) override
     {
-        digitalWrite(pin, value != 0 ? HIGH : LOW);
+        digitalWrite(pin, value ? HIGH : LOW);
     }
 
 private:

@@ -5,6 +5,7 @@
 class IBooleanProvider
 {
     public:
+    virtual ~IBooleanProvider(){}
     virtual bool GetBool() = 0;
 };
 

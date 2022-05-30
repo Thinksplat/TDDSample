@@ -43,7 +43,7 @@ public:
         return time;
     }
 
-    IIntegerConsumer &LED()
+    IBooleanConsumer &LED()
     {
         return led;
     }
