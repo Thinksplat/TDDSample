@@ -11,6 +11,9 @@ class IBooleanProvider
     virtual bool GetBool() = 0;
     // conversion to std::function<bool()>
     operator std::function<bool()>() {
+        return GetFunction();
+    }
+    std::function<bool()> GetFunction() {
         return std::function<bool()>(std::bind(&IBooleanProvider::GetBool, this));
     }
 };

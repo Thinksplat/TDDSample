@@ -8,7 +8,7 @@ class MockIntegerLambda : public IIntegerProvider
 {
     public:
     // constructor takes a lambda
-    MockIntegerLambda(std::function<int16_t()> lambda) : lambda(lambda) {}
+    MockIntegerLambda(std::function<int16_t()> lambda = [](){return 0;}) : lambda(lambda) {}
     int16_t GetInteger() override { return lambda(); }
     private:
     std::function<int16_t()> lambda;

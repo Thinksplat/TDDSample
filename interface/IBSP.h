@@ -1,8 +1,10 @@
 #ifndef A5610071_B08E_49B8_B5AA_4C232DA48081
 #define A5610071_B08E_49B8_B5AA_4C232DA48081
 
+#include "lib-behaviour/BitsToNibbleFunction.h"
+#include "interface/IBooleanProvider.h"
+
 class ITimeProvider;
-class IBooleanProvider;
 class IBooleanConsumer;
 class IIntegerConsumer;
 class ITimer;
@@ -27,6 +29,9 @@ public:
     virtual IBooleanProvider &Pin1() = 0;
     virtual IBooleanProvider &Pin2() = 0;
     virtual IBooleanProvider &Pin3() = 0;
+    std::function<int16_t()> Nibble() {
+        return BitsToNibbleFunction::Create(Pin0(), Pin1(), Pin2(), Pin3());
+    }
 };
 
 #endif /* A5610071_B08E_49B8_B5AA_4C232DA48081 */

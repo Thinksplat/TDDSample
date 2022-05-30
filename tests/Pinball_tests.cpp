@@ -13,12 +13,12 @@ static const int stable_time = 200;
 
 TEST(Pinball, Instantiation)
 {
-    MockBoolean pin0, pin1, pin2, pin3;
+    MockIntegerLambda nibble;
     MockBoolean enable;
     MockTimerLambda timer([]()
                           { return true; });
 
-    Pinball pinball(enable, pin0, pin1, pin2, pin3, timer);
+    Pinball pinball(enable, nibble, timer);
 }
 
 TEST(Pinball, DoesThisThingWork)

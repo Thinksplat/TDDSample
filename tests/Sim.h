@@ -11,6 +11,7 @@ class SimLines
 {
 public:
     SimLines(IBooleanProvider &data0, IBooleanProvider &data1, IBooleanProvider &data2, IBooleanProvider &data3, IBooleanProvider &transmit) : data0(data0), data1(data1), data2(data2), data3(data3), transmit(transmit) {}
+   
     IBooleanProvider &Data0()
     {
         return data0;
