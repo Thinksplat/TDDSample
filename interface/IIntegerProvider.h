@@ -5,12 +5,18 @@
 #include "lib/stdint.h"
 
 // Pull provider for an integer value
-class IIntegerProvider {
+class IIntegerProvider
+{
 public:
     typedef int16_t value_type;
     virtual value_type GetInteger() = 0;
     // conversion to std::function<value_type()>
-    operator std::function<value_type()>() {
+    operator std::function<value_type()>()
+    {
+        return GetFunction();
+    }
+    std::function<value_type()> GetFunction()
+    {
         return std::function<value_type()>(std::bind(&IIntegerProvider::GetInteger, this));
     }
 };

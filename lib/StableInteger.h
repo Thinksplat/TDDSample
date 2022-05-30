@@ -9,18 +9,18 @@
 class StableInteger : public IIntegerProvider
 {
 public:
-    StableInteger(IIntegerProvider &provider, IBooleanProvider &isValid, ITimer &timer) 
+    StableInteger(const std::function<int16_t()> &provider, const std::function<bool()> &isValid, ITimer &timer)
         : provider(provider), isValid(isValid), timer(timer)
     {
     }
     int16_t GetInteger()
     {
-       return Behaviour::Stable(provider, isValid, timer);
+        return Behaviour::Stable(provider, isValid, timer);
     }
 
 private:
-    IIntegerProvider &provider;
-    IBooleanProvider &isValid;
+    std::function<uint16_t()> provider;
+    std::function<bool()> isValid;
     ITimer &timer;
 };
 

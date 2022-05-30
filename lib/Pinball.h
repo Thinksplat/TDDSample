@@ -13,7 +13,7 @@
 class Pinball : public IIntegerProvider
 {
 public:
-    Pinball(IBooleanProvider &enable, IBooleanProvider &pin0, IBooleanProvider &pin1, IBooleanProvider &pin2, IBooleanProvider &pin3,
+    Pinball(const std::function<bool()> &enable, IBooleanProvider &pin0, IBooleanProvider &pin1, IBooleanProvider &pin2, IBooleanProvider &pin3,
         ITimer &stable_timer)
         : nibble(pin0,pin1,pin2,pin3), 
         stable_nibble(nibble, enable, stable_timer), 
@@ -33,7 +33,7 @@ public:
         low_nibble = stable_nibble.GetInteger();
 
         // Read the last stable nibble
-        high_nibble = Behaviour::LastValidValue(enable, stable_nibble);
+        high_nibble = Behaviour::LastValidValue(enable, stable_nibble.GetFunction());
 
         // if low or high is invalid the entire thing is invalid
         if(low_nibble < 0 || high_nibble < 0) {
@@ -57,7 +57,7 @@ private:
     BitsToNibble nibble;
     StableInteger stable_nibble;
     WorkUntilTrue is_transmitting;
-    IBooleanProvider &enable;
+    std::function<bool()> enable;
 
     IIntegerProvider::value_type low_nibble;
     IIntegerProvider::value_type high_nibble;

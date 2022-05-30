@@ -11,7 +11,7 @@ TEST(LastValidValue, ImmediateInvalid)
     MockBooleanLambda isValid([]()
                               { return false; });
 
-    auto value = Behaviour::LastValidValue(isValid, mockInt);
+    auto value = Behaviour::LastValidValue(isValid, mockInt.GetFunction());
     EXPECT_EQ(-1, value);
 }
 
@@ -23,7 +23,7 @@ TEST(LastValidValue, OneValid)
     MockBooleanLambda isValid([&count]()
                               { return (count++) < 10; });
 
-    auto value = Behaviour::LastValidValue(isValid, mockInt);
+    auto value = Behaviour::LastValidValue(isValid, mockInt.GetFunction());
     EXPECT_EQ(0, value);
 }
 
@@ -35,7 +35,7 @@ TEST(LastValidValue, LastValid)
     MockBooleanLambda isValid([&count]()
                               { return (count++) < 10; });
 
-    auto value = Behaviour::LastValidValue(isValid, mockInt);
+    auto value = Behaviour::LastValidValue(isValid, mockInt.GetFunction());
     EXPECT_EQ(10, value);
 }
 
@@ -47,6 +47,6 @@ TEST(LastValidValue, InvalidStuffAtEndIgnored)
     MockBooleanLambda isValid([&count]()
                               { return (count++) < 10; });
 
-    auto value = Behaviour::LastValidValue(isValid, mockInt);
+    auto value = Behaviour::LastValidValue(isValid, mockInt.GetFunction());
     EXPECT_EQ(5, value);
 }

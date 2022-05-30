@@ -10,12 +10,13 @@ namespace Behaviour {
     /// @param value The value we are monitoring
     /// @return The last valid value of the provider
 
-    static IIntegerProvider::value_type LastValidValue(IBooleanProvider &isValid, IIntegerProvider &value) {
+    template <typename T>
+    static T LastValidValue(const std::function<bool()> &isValid, const std::function<T()> &value) {
         // Start out invalid in the case we immediately drop out of the while loop
-        auto last_valid = -1;
+        T last_valid = -1;
 
-        while (isValid.GetBool()) {
-            auto this_value = value.GetInteger();
+        while (isValid()) {
+            T this_value = value();
             // "by definition", a valid value is greater than 0
             if (this_value >= 0) {
                 last_valid = this_value;

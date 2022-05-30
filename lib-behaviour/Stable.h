@@ -11,7 +11,7 @@ namespace Behaviour
     /// @param isValid Keep reading while isValid continues to provide true
     /// @param value The value we are monitoring
     /// @return The last valid value of the provider
-    static IIntegerProvider::value_type Stable(IIntegerProvider &value, IBooleanProvider &isValid, ITimer &timer)
+    static IIntegerProvider::value_type Stable(const std::function<int16_t()> &value, const std::function<bool()> &isValid, ITimer &timer)
     {
         // We don't reset the timer on entry because the
         // logic below will fall through to reset the value
@@ -19,9 +19,9 @@ namespace Behaviour
 
         IIntegerProvider::value_type lastvalue = -1;
         // Do this while we're allowed to
-        while (isValid.GetBool())
+        while (isValid())
         {
-            IIntegerProvider::value_type thisvalue = value.GetInteger();
+            IIntegerProvider::value_type thisvalue = value();
             if(thisvalue < 0) {
                 return thisvalue;
             }
