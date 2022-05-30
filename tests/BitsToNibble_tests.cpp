@@ -16,9 +16,7 @@ static void TestPattern(bool bit0, bool bit1, bool bit2, bool bit3, int16_t expe
     auto value = intprovider.GetInteger();
     ASSERT_EQ(value, expected);
 
-    // Test the pure static function too.
-    value = BitsToNibble::Convert(bit0,bit1,bit2,bit3);
-    ASSERT_EQ(value, expected);
+  
 }
 
 // Demonstrate some basic assertions.

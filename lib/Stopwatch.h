@@ -1,31 +1,31 @@
-#ifndef BF04202A_3954_46A7_8763_D6A6230754B9
-#define BF04202A_3954_46A7_8763_D6A6230754B9
+#ifndef C7A5E506_5861_4277_B46F_6172A941A349
+#define C7A5E506_5861_4277_B46F_6172A941A349
 
-#include "interface/ITimeProvider.h"
+#include <functional>
 
 class Stopwatch
 {
 public:
-    Stopwatch(ITimeProvider &timeProvider) : timeProvider(timeProvider)
+    Stopwatch(const std::function<uint32_t()> &timeProvider) : timeProvider(timeProvider)
     {
         Reset();
     }
     
     void Reset()
     {
-        startTime = timeProvider.GetMicroseconds();
+        startTime = timeProvider();
     }
 
     uint32_t ElapsedMicroseconds()
     {
         // This properly handles rollover when the provider goes over
         // 2^32-1 microseconds.
-        return timeProvider.GetMicroseconds() - startTime;
+        return timeProvider() - startTime;
     }
 
 private:
-    ITimeProvider &timeProvider;
+    std::function<uint32_t()> timeProvider;
     uint32_t startTime;
 };
 
-#endif /* BF04202A_3954_46A7_8763_D6A6230754B9 */
+#endif /* C7A5E506_5861_4277_B46F_6172A941A349 */

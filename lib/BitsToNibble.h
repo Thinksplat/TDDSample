@@ -1,36 +1,30 @@
 #ifndef E6A14C88_2DD2_482F_93FA_869F1B594AE9
 #define E6A14C88_2DD2_482F_93FA_869F1B594AE9
 
+#include <functional>
 #include "interface/IIntegerProvider.h"
 #include "interface/IBooleanProvider.h"
 #include "shared/bit_conversions.h"
+#include "lib-behaviour/BitsToNibbleFunction.h"
 
 class BitsToNibble : public IIntegerProvider
 {
 public:
-    BitsToNibble(IBooleanProvider &bit0, IBooleanProvider &bit1, IBooleanProvider &bit2, IBooleanProvider &bit3) : bit0(bit0), bit1(bit1), bit2(bit2), bit3(bit3)
+    BitsToNibble(const std::function<bool()> &bit0, 
+    const std::function<bool()> &bit1, 
+    const std::function<bool()> &bit2, 
+    const std::function<bool()> &bit3)
     {
+        convert = BitsToNibbleFunction::Create(bit0, bit1, bit2, bit3);
     }
     
     int16_t GetInteger() override
     {
-        return Convert(
-            bit0.GetBool(),
-            bit1.GetBool(),
-            bit2.GetBool(),
-            bit3.GetBool());
-    }
-    
-    static int16_t Convert(bool bit0, bool bit1, bool bit2, bool bit3)
-    {
-        return BitConversions::BitsToInteger(bit0, bit1, bit2, bit3);
+       return convert();
     }
 
 private:
-    IBooleanProvider &bit0;
-    IBooleanProvider &bit1;
-    IBooleanProvider &bit2;
-    IBooleanProvider &bit3;
+    std::function<IIntegerProvider::value_type()> convert;
 };
 
 #endif /* E6A14C88_2DD2_482F_93FA_869F1B594AE9 */
