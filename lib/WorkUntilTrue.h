@@ -1,14 +1,14 @@
 #ifndef CDEF15BB_47C5_4333_B5B5_C93189284355
 #define CDEF15BB_47C5_4333_B5B5_C93189284355
 
-#include "interface/IWaiter.h"
+#include "interface/IWork.h"
 #include "interface/IBooleanProvider.h"
 
-class BoolTrueWaiter : IWaiter
+class WorkUntilTrue : IWork
 {
 public:
-    BoolTrueWaiter(IBooleanProvider &provider) : provider(provider) {}
-    virtual void Wait()
+    WorkUntilTrue(IBooleanProvider &provider) : provider(provider) {}
+    virtual void Work()
     {
         while (provider.GetBool() == false)
         {

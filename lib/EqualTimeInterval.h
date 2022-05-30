@@ -2,16 +2,16 @@
 #define E21D3C25_B801_4579_B115_5C89FA7A13F9
 
 #include "interface/ITimeProvider.h"
-#include "interface/IWaiter.h"
+#include "interface/ITimer.h"
 
 // On overframe will immediately return to attempt to catch up
 class EqualTimeInterval
 {
 public:
-    class TimerWaiter : public IWaiter
+    class TimerWaiter : public ITimer
     {
     public:
-        void Wait()
+        void Work() override
         {
             // we use these calculations to deal with overflow properly
             while (NotReady())
@@ -25,7 +25,7 @@ public:
             return !HasExpired();
         }
 
-        inline bool HasExpired()
+        inline bool HasExpired() override
         {
             return time.GetMicroseconds() - last_microseconds >= interval_microseconds;
         }
@@ -33,6 +33,9 @@ public:
         inline void Advance()
         {
             last_microseconds += interval_microseconds;
+        }
+        void Reset() override {
+            // do nothing
         }
 
         TimerWaiter(ITimeProvider &time, uint32_t &last_microseconds, uint32_t interval_microseconds) : time(time), last_microseconds(last_microseconds), interval_microseconds(interval_microseconds) {}

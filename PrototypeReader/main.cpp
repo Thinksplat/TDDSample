@@ -2,7 +2,7 @@
 #include "lib-behaviour/Blink.h"
 #include "lib/EqualTimeInterval.h"
 
-void SOS(IIntegerConsumer &led, ITimeProvider &time)
+void SOS(IBooleanConsumer &led, ITimeProvider &time)
 {
     const uint32_t shorttime = 100000;
     const uint32_t longtime = shorttime * 3;

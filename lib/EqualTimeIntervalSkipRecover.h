@@ -10,14 +10,14 @@ public:
         : eqi(time)
     {
     }
-    class SkipRecoverWaiter : public IWaiter
+    class SkipRecoverWaiter : public IWork
     {
     public:
         SkipRecoverWaiter(const EqualTimeInterval::TimerWaiter &waiter)
             : waiter(waiter)
         {
         }
-        void Wait()
+        void Work()
         {
             // The skipping process
             while (waiter.HasExpired())
@@ -39,7 +39,7 @@ public:
     // Wait microseconds from the previous wait point
     void Wait(uint32_t interval_microseconds)
     {
-        CreateWaiter(interval_microseconds).Wait();
+        CreateWaiter(interval_microseconds).Work();
     }
 
 private:

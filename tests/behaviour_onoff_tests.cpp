@@ -3,6 +3,7 @@
 #include "WalkingTime.h"
 #include "MockIntegerConsumer.h"
 #include "MockIntegerConsumerLambda.h"
+#include "MockBooleanLambda.h"
 #include "IntegerConsumerRecorder.h"
 #include "lib/EqualTimeInterval.h"
 #include "tests/MockTimerLambda.h"
@@ -15,7 +16,7 @@ TEST(Behaviour, OnOffPattern)
                           { pattern.push_back("wait"); 
                                     return true; });
 
-    MockIntegerConsumerLambda led([&pattern](int16_t value)
+    MockBooleanLambdaConsumer led([&pattern](bool value)
                                   { pattern.push_back(value ? "on" : "off"); });
 
     Behaviour::OnOff(led, timer);

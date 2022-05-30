@@ -47,6 +47,12 @@ add_executable(
   ${PROTOTYPEREADER_SRCS}
 )
 
+FILE(GLOB PROTOTYPEBLINK_SRCS PrototypeBlink/*.cpp)
+add_executable(
+  PrototypeBlink
+  ${PROTOTYPEBLINK_SRCS}
+)
+
 FILE(GLOB PROTOTYPEREADER_SRCS PrototypePinball/*.cpp)
 add_executable(
   PrototypePinball

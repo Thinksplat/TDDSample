@@ -1,20 +1,20 @@
 #ifndef D6560AD8_CADB_40B0_8B37_0E2F0B74B126
 #define D6560AD8_CADB_40B0_8B37_0E2F0B74B126
 
-#include "interface/IIntegerConsumer.h"
-#include "interface/IWaiter.h"
+#include "interface/IBooleanConsumer.h"
+#include "interface/IWork.h"
 
 namespace Behaviour
 {
-    static void OnOff(IIntegerConsumer &output, IWaiter &waiter)
+    static void OnOff(IBooleanConsumer &output, IWork &waiter)
     {
         // ON
         output.Consume(1);
-        waiter.Wait();
+        waiter.Work();
 
         // Off
         output.Consume(0);
-        waiter.Wait();
+        waiter.Work();
     }
 
 } // namespace Behaviour

@@ -3,6 +3,7 @@
 
 class ITimeProvider;
 class IBooleanProvider;
+class IBooleanConsumer;
 class IIntegerConsumer;
 class ITimer;
 
@@ -15,7 +16,7 @@ public:
     virtual ITimer &RunningTimer() = 0;
 
     // LED for visible status if
-    virtual IIntegerConsumer &LED() = 0;
+    virtual IBooleanConsumer &LED() = 0;
 
     // Where the data is sent to
     virtual IIntegerConsumer &Consumer() = 0;

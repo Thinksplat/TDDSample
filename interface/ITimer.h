@@ -1,13 +1,18 @@
 #ifndef DA6A6755_21A6_4743_8988_1F46A84425CA
 #define DA6A6755_21A6_4743_8988_1F46A84425CA
 
-#include "interface/IWaiter.h"
+#include "interface/IWork.h"
 
-class ITimer : public IWaiter
+class ITimer : public IWork
 {
 public:
-    void Wait() override {
-        while(!HasExpired())
+    void Wait()
+    {
+        Work();
+    }
+    void Work() override
+    {
+        while (!HasExpired())
         {
             // Do nothing
         }

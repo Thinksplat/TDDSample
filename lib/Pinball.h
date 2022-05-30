@@ -7,7 +7,7 @@
 #include "lib/StableInteger.h"
 #include "interface/ITimer.h"
 #include "lib-behaviour/LastValidValue.h"
-#include "lib/BoolTrueWaiter.h"
+#include "lib/WorkUntilTrue.h"
 #include "shared/bit_conversions.h"
 
 class Pinball : public IIntegerProvider
@@ -27,7 +27,7 @@ public:
         // This is the meat of our project.
         
         // Wait for the enable line to go high
-        is_transmitting.Wait();
+        is_transmitting.Work();
 
         // Read the first stable nibble
         low_nibble = stable_nibble.GetInteger();
@@ -56,7 +56,7 @@ public:
 private:
     BitsToNibble nibble;
     StableInteger stable_nibble;
-    BoolTrueWaiter is_transmitting;
+    WorkUntilTrue is_transmitting;
     IBooleanProvider &enable;
 
     IIntegerProvider::value_type low_nibble;

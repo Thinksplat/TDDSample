@@ -4,9 +4,12 @@
 #include "interface/IIntegerConsumer.h"
 #include <vector>
 
-class IntegerConsumerRecorder : public IIntegerConsumer
+class IntegerConsumerRecorder : public IIntegerConsumer, public IBooleanConsumer
 {
 public:
+    void Consume(bool value) override {
+        values.push_back(value ? 1 : 0);
+    }
     void Consume(int16_t value) override
     {
         values.push_back(value);

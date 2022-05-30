@@ -13,10 +13,10 @@
 #include <sys/time.h>
 #include <iostream>
 
-class LinuxLED : public IIntegerConsumer
+class LinuxLED : public IBooleanConsumer
 {
 public:
-    void Consume(int16_t value) override
+    void Consume(bool value) override
     {
         if (prev != value)
         {
@@ -26,7 +26,7 @@ public:
     }
 
 private:
-    int16_t prev = 0;
+    bool prev = 0;
 };
 
 class LinuxTime : public ITimeProvider
@@ -121,7 +121,7 @@ public:
         return sim.Lines().Data3();
     }
 
-    IIntegerConsumer &LED() override
+    IBooleanConsumer &LED() override
     {
         return led;
     }

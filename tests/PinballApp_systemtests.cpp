@@ -4,6 +4,7 @@
 #include "lib/PinballApp.h"
 #include "tests/WalkingTime.h"
 #include "tests/MockIntegerConsumer.h"
+#include "tests/MockBoolean.h"
 #include "tests/MockIntegerConsumerLambda.h"
 #include "lib/TimeTimer.h"
 #include "interface/IBSP.h"
@@ -43,48 +44,48 @@ public:
                                    noise_time, 99 & 0xf, 99 >> 4);
     }
 
-    ITimeProvider &Time()
+    ITimeProvider &Time() override
     {
         return time;
     }
 
     // A timer that expires when we should stop running
-    ITimer &RunningTimer()
+    ITimer &RunningTimer() override
     {
         return keeprunning;
     }
 
     // LED for visible status if
-    IIntegerConsumer &LED()
+    IBooleanConsumer &LED() override
     {
         return led;
     }
 
     // Where the data is sent to
-    IIntegerConsumer &Consumer()
+    IIntegerConsumer &Consumer() override
     {
         return consumer;
     }
 
-    IBooleanProvider &Transmit()
+    IBooleanProvider &Transmit() override
     {
         return sim.Lines().Transmit();
     }
 
-    IBooleanProvider &Pin0()
+    IBooleanProvider &Pin0() override
     {
         return sim.Lines().Data0();
     }
 
-    IBooleanProvider &Pin1()
+    IBooleanProvider &Pin1() override
     {
         return sim.Lines().Data1();
     }
-    IBooleanProvider &Pin2()
+    IBooleanProvider &Pin2() override
     {
         return sim.Lines().Data2();
     }
-    IBooleanProvider &Pin3()
+    IBooleanProvider &Pin3() override
     {
         return sim.Lines().Data3();
     }
@@ -94,7 +95,7 @@ private:
     Sim sim;
     WalkingTime time;
     TimeTimer keeprunning;
-    MockIntegerConsumer led;
+    MockBooleanConsumer led;
 };
 
 // We run the test once and then validate the recorded data.
